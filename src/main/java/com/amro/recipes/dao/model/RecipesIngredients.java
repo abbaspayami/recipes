@@ -21,10 +21,10 @@ public class RecipesIngredients {
 
     @Column(nullable = false)
     @OneToMany(targetEntity = Recipes.class, mappedBy = "rfRecipeIngredients", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Recipes> recipes;
+    private Set<Ingredients> ingredients;
 
-//    @Column(nullable = false)
-//    @OneToMany(targetEntity = Recipes.class, mappedBy = "rfRecipeIngredients", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private Set<Ingredients> ingredients;
+    @Column(nullable = false)
+    @OneToMany(targetEntity = Recipes.class, mappedBy = "rfRecipeIngredients", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Recipes> recipes;
 
 }
