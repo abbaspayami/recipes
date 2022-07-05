@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -33,7 +34,7 @@ public class IngredientsIntegrationTest {
 
     @Test
     void save_Ingredient_Test() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(post("http://localhost:8080/api/ingredient/add")
+        MvcResult mvcResult = mockMvc.perform(post("http://localhost:8080/api/ingredient")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(this.asJsonString(TestUtils.ingredientDto())))
                 .andExpect(status().isOk())
@@ -45,7 +46,7 @@ public class IngredientsIntegrationTest {
 
     @Test
     void saveAlreadyExist_Ingredient_Test() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(post("http://localhost:8080/api/ingredient/add")
+        MvcResult mvcResult = mockMvc.perform(post("http://localhost:8080/api/ingredient")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(this.asJsonString(TestUtils.ingredientDto())))
                 .andExpect(status().isOk())
@@ -59,6 +60,18 @@ public class IngredientsIntegrationTest {
                         .content(this.asJsonString(TestUtils.ingredientDto())))
                 .andExpect(status().isBadRequest())
                 .andReturn();
+    }
+
+    @Test
+    void getAll_Ingredient_Test() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(get("http://localhost:8080/api/ingredient/all")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(this.asJsonString(TestUtils.ingredientDto())))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        assertNotNull(mvcResult.getResponse());
+        assertNotNull(mvcResult.getResponse().getContentAsString());
     }
 
     public String asJsonString(IngredientDto ingredientDto) {
