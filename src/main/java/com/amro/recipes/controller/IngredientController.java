@@ -38,4 +38,14 @@ public class IngredientController {
         ResponseEntity.status(HttpStatus.CREATED);
     }
 
+//    /**
+//     * Create New Cart
+//     * @param cartDto cartDto
+//     * @return Cart Object
+//     */
+//    @PostMapping(value = "/carts")
+//    public ResponseEntity<Cart> createShoppingCart(@RequestBody CartDto cartDto) {
+//        return new ResponseEntity<>(cartService.createShoppingCart(cartDto), HttpStatus.CREATED);
+//    }
+
 }

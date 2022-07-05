@@ -23,7 +23,7 @@ public class RestExceptionHandler {
     @ExceptionHandler({IngredientAlreadyExistException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ExceptionDto handleCard(Exception ex) {
-        return new ExceptionDto(ex.getMessage(), HttpStatus.NOT_FOUND);
+        return new ExceptionDto(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
 }
