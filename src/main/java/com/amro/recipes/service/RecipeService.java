@@ -1,7 +1,6 @@
 package com.amro.recipes.service;
 
 import com.amro.recipes.dao.model.Recipes;
-import com.amro.recipes.dao.model.FoodType;
 import com.amro.recipes.dao.repository.RecipeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,12 +21,12 @@ public class RecipeService {
 
     private final RecipeRepository recipeRepository;
 
-    public List<FoodType> getTypeFoods() {
-        log.info("Getting food Types");
-        return recipeRepository.findAll()
-                .stream()
-                .map(Recipes::getFoodType)
-                .collect(Collectors.toList());
-    }
+//    public List<FoodType> getTypeFoods() {
+//        log.info("Getting food Types");
+//        return recipeRepository.findAll()
+//                .stream()
+//                .map(Recipes::getFoodType)
+//                .collect(Collectors.toList());
+//    }
 
 }

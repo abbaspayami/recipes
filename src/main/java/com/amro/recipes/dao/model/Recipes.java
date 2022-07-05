@@ -19,13 +19,14 @@ public class Recipes {
     @Column(name = "tile", length = 50)
     private String title;
 
-    @Enumerated(EnumType.STRING)
-    private FoodType foodType;
-
     @Column(name = "serve", nullable = false)
     private Integer serve = 1;
 
     private String instructions;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_foodCategories_id", referencedColumnName = "id")
+    private FoodCategories rfFoodCategories;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_recipeIngredients_id", referencedColumnName = "id")

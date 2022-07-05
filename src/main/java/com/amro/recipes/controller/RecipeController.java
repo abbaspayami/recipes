@@ -1,6 +1,5 @@
 package com.amro.recipes.controller;
 
-import com.amro.recipes.dao.model.FoodType;
 import com.amro.recipes.service.RecipeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,10 +29,10 @@ public class RecipeController {
      * Finding Type Foods
      * @return Type foods
      */
-    @GetMapping(value = "/recipes/typeFoods")
-    public ResponseEntity<List<FoodType>> getTypeFoods() {
-        log.debug("Get typeFoods");
-        return new ResponseEntity<>(recipeService.getTypeFoods(), HttpStatus.OK);
-    }
+//    @GetMapping(value = "/recipes/typeFoods")
+//    public ResponseEntity<List<FoodType>> getTypeFoods() {
+//        log.debug("Get typeFoods");
+//        return new ResponseEntity<>(recipeService.getTypeFoods(), HttpStatus.OK);
+//    }
 
 }
