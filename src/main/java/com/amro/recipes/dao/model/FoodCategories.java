@@ -20,8 +20,8 @@ public class FoodCategories {
 
     private String foodType;
 
-//    @Column(nullable = false)
-//    @OneToMany(targetEntity = Recipes.class, mappedBy = "rfFoodCategories", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private Set<Recipes> recipes;
+    @Column(nullable = false)
+    @OneToMany(targetEntity = Recipes.class, mappedBy = "rfFoodCategories", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Recipes> recipes;
 
 }

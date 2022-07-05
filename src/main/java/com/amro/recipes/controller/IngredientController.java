@@ -26,7 +26,6 @@ public class IngredientController {
     /**
      * adding new ingredient
      *
-     * @return new ingredient
      */
     @ApiOperation(value = "Adding New Ingredient")
     @PostMapping
