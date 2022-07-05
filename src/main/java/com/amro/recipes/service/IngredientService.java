@@ -1,14 +1,12 @@
 package com.amro.recipes.service;
 
 import com.amro.recipes.dao.model.Ingredients;
-import com.amro.recipes.dto.IngredientDto;
 import com.amro.recipes.dao.repository.IngredientsRepository;
+import com.amro.recipes.dto.IngredientDto;
 import com.amro.recipes.exceptions.IngredientAlreadyExistException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 
 @Slf4j
 @Service
@@ -25,7 +23,7 @@ public class IngredientService {
 
     public void checkingIngredientIsExist(String ingredient) {
         log.info("checking Ingredient is already Exist...");
-        if (!ingredientsRepository.existsIngredientsByIngredient(ingredient)) {
+        if (ingredientsRepository.existsIngredientsByIngredient(ingredient)) {
             throw new IngredientAlreadyExistException("The Ingredient is already exist in the database: ");
         }
     }

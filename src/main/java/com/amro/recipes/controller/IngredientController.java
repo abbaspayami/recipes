@@ -32,10 +32,10 @@ public class IngredientController {
      */
     @ApiOperation(value = "Adding New Ingredient")
     @PostMapping(value = "/add")
-    public ResponseEntity<?> add(@RequestBody
-                                     @Valid IngredientDto ingredientDto) {
+    public void add(@RequestBody
+                        @Valid IngredientDto ingredientDto) {
         ingredientService.add((ingredientDto));
-        return (ResponseEntity<?>) ResponseEntity.status(HttpStatus.CREATED);
+        ResponseEntity.status(HttpStatus.CREATED);
     }
 
 }
