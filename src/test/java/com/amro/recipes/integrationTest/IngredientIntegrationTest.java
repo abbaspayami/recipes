@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @ExtendWith(SpringExtension.class)
 @TestPropertySource("classpath:application-test.properties")
-public class IngredientsIntegrationTest {
+public class IngredientIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;

@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class FoodCategoryDto {
+public class FoodTypeDto {
 
     @NotNull(message = "is Mandatory")
     private String foodType;

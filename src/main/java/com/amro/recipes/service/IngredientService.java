@@ -1,6 +1,6 @@
 package com.amro.recipes.service;
 
-import com.amro.recipes.dao.model.Ingredients;
+import com.amro.recipes.dao.model.Ingredient;
 import com.amro.recipes.dao.repository.IngredientsRepository;
 import com.amro.recipes.dto.IngredientDto;
 import com.amro.recipes.exceptions.IngredientAlreadyExistException;
@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -25,14 +24,10 @@ public class IngredientService {
         saveIngredient(ingredientDto.getIngredient());
     }
 
-
-    public List<String> getAll() {
+    public List<Ingredient> getAll() {
         log.debug("get all Ingredient...");
 
-        return ingredientsRepository.findAll()
-                .stream()
-                .map(Ingredients::getIngredient)
-                .collect(Collectors.toList());
+        return ingredientsRepository.findAll();
     }
 
     public void checkingIngredientIsExist(String ingredient) {
@@ -44,7 +39,7 @@ public class IngredientService {
 
     private void saveIngredient(String ingredient) {
         log.info("Starting to save ingredient in db...");
-        var ingredients = new Ingredients();
+        var ingredients = new Ingredient();
         ingredients.setIngredient(ingredient);
         ingredientsRepository.save(ingredients);
         log.info("Ingredient saved to db successfully.");

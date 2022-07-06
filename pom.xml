@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.amro</groupId>
-	<artifactId>recipes</artifactId>
+	<artifactId>recipe</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>recipes</name>
+	<name>recipe</name>
 	<description>project for ABN AMRO</description>
 	<properties>
 		<java.version>11</java.version>

@@ -1,9 +1,6 @@
 package com.amro.recipes.controller;
 
-import com.amro.recipes.dao.model.FoodCategories;
-import com.amro.recipes.dao.repository.FoodCategoriesRepository;
-import com.amro.recipes.dto.FoodCategoryDto;
-import com.amro.recipes.dto.IngredientDto;
+import com.amro.recipes.dto.FoodTypeDto;
 import com.amro.recipes.service.FoodCategoriesService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +17,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api/foodCategories")
 @RequiredArgsConstructor
-public class FoodCategoriesController {
+public class FoodTypeController {
 
     private final FoodCategoriesService foodCategoriesService;
 
@@ -31,9 +28,9 @@ public class FoodCategoriesController {
     @ApiOperation(value = "Adding New food category")
     @PostMapping
     public void add(@RequestBody
-                    @Valid FoodCategoryDto foodCategoryDto) {
-        log.debug("Request save new  food category {} : ", foodCategoryDto.getFoodType());
-        foodCategoriesService.add(foodCategoryDto);
+                    @Valid FoodTypeDto foodTypeDto) {
+        log.debug("Request save new  food category {} : ", foodTypeDto.getFoodType());
+        foodCategoriesService.add(foodTypeDto);
         ResponseEntity.status(HttpStatus.CREATED);
     }
 

@@ -1,25 +1,22 @@
 package com.amro.recipes.dao.model;
 
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ingredients")
+@Table(name = "food_type")
 @NoArgsConstructor
 @Data
-public class Ingredients {
+public class FoodType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    private String ingredient;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_recipeIngredients_id", referencedColumnName = "id")
-    private RecipesIngredients recipeIngredients;
+    private String type;
 
 }

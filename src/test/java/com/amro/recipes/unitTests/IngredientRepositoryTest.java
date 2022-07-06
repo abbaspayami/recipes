@@ -1,7 +1,7 @@
 package com.amro.recipes.unitTests;
 
 import com.amro.recipes.common.TestUtils;
-import com.amro.recipes.dao.model.Ingredients;
+import com.amro.recipes.dao.model.Ingredient;
 import com.amro.recipes.dao.repository.IngredientsRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +15,16 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  * @author Abbas
  */
 @DataJpaTest
-public class IngredientsRepositoryTest {
+public class IngredientRepositoryTest {
 
     @Autowired
     private IngredientsRepository ingredientsRepository;
 
     @Test
     void SaveIngredientTest() {
-        Ingredients ingredients = TestUtils.newIngredient();
+        Ingredient ingredient = TestUtils.newIngredient();
 
-        Ingredients saved = ingredientsRepository.save(ingredients);
+        Ingredient saved = ingredientsRepository.save(ingredient);
         assertNotNull(saved);
 
     }

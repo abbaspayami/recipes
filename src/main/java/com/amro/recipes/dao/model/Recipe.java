@@ -4,12 +4,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @Data
 @Entity
 @Table(name = "recipes")
-public class Recipes {
+public class Recipe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,15 +23,17 @@ public class Recipes {
     @Column(name = "serve", nullable = false)
     private Integer serve = 1;
 
+    // TODO: Full text search index should be created for this field (Look at MySQL and Hibernate docs)
+    @Column(name = "instructions")
     private String instructions;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_foodCategories_id", referencedColumnName = "id")
-    private FoodCategories rfFoodCategories;
+    private FoodType rfFoodType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_recipeIngredients_id", referencedColumnName = "id")
-    private RecipesIngredients rfRecipeIngredients;
+    @JoinTable
+    @OneToMany
+    private List<Ingredient> ingredients;
 
 
 }

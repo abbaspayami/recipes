@@ -1,12 +1,9 @@
 package com.amro.recipes.service;
 
-import com.amro.recipes.dao.model.FoodCategories;
-import com.amro.recipes.dao.model.Ingredients;
+import com.amro.recipes.dao.model.FoodType;
 import com.amro.recipes.dao.repository.FoodCategoriesRepository;
-import com.amro.recipes.dto.FoodCategoryDto;
-import com.amro.recipes.dto.IngredientDto;
+import com.amro.recipes.dto.FoodTypeDto;
 import com.amro.recipes.exceptions.FoodCategoryAlreadyExistException;
-import com.amro.recipes.exceptions.IngredientAlreadyExistException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,10 +18,10 @@ public class FoodCategoriesService {
 
     private final FoodCategoriesRepository foodCategoriesRepository;
 
-    public void add(FoodCategoryDto foodCategoryDto) {
+    public void add(FoodTypeDto foodTypeDto) {
         log.info("adding Food Type...");
-        checkingFoodCategoriesIsExist(foodCategoryDto.getFoodType());
-        saveFoodCategories(foodCategoryDto.getFoodType());
+        checkingFoodCategoriesIsExist(foodTypeDto.getFoodType());
+        saveFoodCategories(foodTypeDto.getFoodType());
     }
 
     public List<String> getAll() {
@@ -32,21 +29,21 @@ public class FoodCategoriesService {
 
         return foodCategoriesRepository.findAll()
                 .stream()
-                .map(FoodCategories::getFoodType)
+                .map(FoodType::getType)
                 .collect(Collectors.toList());
     }
 
     public void checkingFoodCategoriesIsExist(String foodType) {
         log.info("checking Ingredient is already Exist...");
-        if (foodCategoriesRepository.existsFoodCategoriesByFoodType(foodType)) {
+        if (foodCategoriesRepository.existsFoodTypeByType(foodType)) {
             throw new FoodCategoryAlreadyExistException("The Food Type is already exist in the database: ");
         }
     }
 
     private void saveFoodCategories(String foodType) {
         log.info("Starting to save ingredient in db...");
-        var foodCategories = new FoodCategories();
-        foodCategories.setFoodType(foodType);
+        var foodCategories = new FoodType();
+        foodCategories.setType(foodType);
         foodCategoriesRepository.save(foodCategories);
         log.info("Food Category saved to db successfully.");
     }
