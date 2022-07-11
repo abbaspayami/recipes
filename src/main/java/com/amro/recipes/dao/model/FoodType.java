@@ -17,6 +17,7 @@ public class FoodType {
     @Column(name = "id")
     private Integer id;
 
+    @Column(name = "type")
     private String type;
 
 }

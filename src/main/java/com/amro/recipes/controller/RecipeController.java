@@ -1,6 +1,7 @@
 package com.amro.recipes.controller;
 
 import com.amro.recipes.dto.RecipeDto;
+import com.amro.recipes.dto.RecipeSearchDto;
 import com.amro.recipes.service.RecipeService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 
 @Validated
 @Slf4j
@@ -33,6 +35,18 @@ public class RecipeController {
         recipeService.add(recipeDto);
         ResponseEntity.status(HttpStatus.CREATED);
     }
+
+//    /**
+//     * search specific recipe
+//     *
+//     */
+//    @ApiOperation(value = "searching recipe")
+//    @GetMapping
+//    public void search(@PathVariable
+//                       RecipeSearchDto recipeSearchDto) {
+//        log.debug("searching Recipes...");
+//        return new ResponseEntity<>(recipeService.search(recipeSearchDto), HttpStatus.OK);
+//    }
 
     /**
      * indicates the all recipes

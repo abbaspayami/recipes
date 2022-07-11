@@ -10,6 +10,7 @@ import com.amro.recipes.dto.RecipeDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class RecipeService {
 
     private final FoodCategoriesRepository foodCategoriesRepository;
 
-//    @Transactional
+    @Transactional
     public void add(RecipeDto recipeDto) {
         log.info("adding Recipe...");
 
@@ -53,6 +54,8 @@ public class RecipeService {
         recipe.setIngredients(ingredientList);
         recipeRepository.save(recipe);
     }
+
+//    public void search( );
 
     public List<String> getAll() {
         log.debug("get all Ingredient...");
