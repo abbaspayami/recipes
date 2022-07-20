@@ -1,5 +1,6 @@
 package com.amro.recipes.dao.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -27,10 +28,12 @@ public class Recipe {
     @Column(name = "instructions")
     private String instructions;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_foodCategories_id", referencedColumnName = "id")
+    @JoinColumn(name = "fk_foodType_id", referencedColumnName = "id")
     private FoodType rfFoodType;
 
+    @JsonIgnore
     @JoinTable
     @OneToMany
     private List<Ingredient> ingredients;

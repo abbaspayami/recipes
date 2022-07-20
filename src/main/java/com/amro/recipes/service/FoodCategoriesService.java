@@ -1,7 +1,7 @@
 package com.amro.recipes.service;
 
 import com.amro.recipes.dao.model.FoodType;
-import com.amro.recipes.dao.repository.FoodCategoriesRepository;
+import com.amro.recipes.dao.repository.FoodTypeRepository;
 import com.amro.recipes.dto.FoodTypeDto;
 import com.amro.recipes.exceptions.FoodCategoryAlreadyExistException;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class FoodCategoriesService {
 
-    private final FoodCategoriesRepository foodCategoriesRepository;
+    private final FoodTypeRepository foodTypeRepository;
 
     public void add(FoodTypeDto foodTypeDto) {
         log.info("adding Food Type...");
@@ -27,7 +27,7 @@ public class FoodCategoriesService {
     public List<String> getAll() {
         log.debug("get all Ingredient...");
 
-        return foodCategoriesRepository.findAll()
+        return foodTypeRepository.findAll()
                 .stream()
                 .map(FoodType::getType)
                 .collect(Collectors.toList());
@@ -35,7 +35,7 @@ public class FoodCategoriesService {
 
     public void checkingFoodCategoriesIsExist(String foodType) {
         log.info("checking Ingredient is already Exist...");
-        if (foodCategoriesRepository.existsFoodTypeByType(foodType)) {
+        if (foodTypeRepository.existsFoodTypeByType(foodType)) {
             throw new FoodCategoryAlreadyExistException("The Food Type is already exist in the database: ");
         }
     }
@@ -44,7 +44,7 @@ public class FoodCategoriesService {
         log.info("Starting to save ingredient in db...");
         var foodCategories = new FoodType();
         foodCategories.setType(foodType);
-        foodCategoriesRepository.save(foodCategories);
+        foodTypeRepository.save(foodCategories);
         log.info("Food Category saved to db successfully.");
     }
 

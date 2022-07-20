@@ -3,10 +3,11 @@ package com.amro.recipes.service;
 import com.amro.recipes.dao.model.FoodType;
 import com.amro.recipes.dao.model.Ingredient;
 import com.amro.recipes.dao.model.Recipe;
-import com.amro.recipes.dao.repository.FoodCategoriesRepository;
+import com.amro.recipes.dao.repository.FoodTypeRepository;
 import com.amro.recipes.dao.repository.IngredientsRepository;
 import com.amro.recipes.dao.repository.RecipeRepository;
 import com.amro.recipes.dto.RecipeDto;
+import com.amro.recipes.dto.RecipeSearchDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,7 @@ public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final IngredientsRepository ingredientsRepository;
 
-    private final FoodCategoriesRepository foodCategoriesRepository;
+    private final FoodTypeRepository foodTypeRepository;
 
     @Transactional
     public void add(RecipeDto recipeDto) {
@@ -41,7 +42,7 @@ public class RecipeService {
         recipe.setServe(recipeDto.getServe());
         recipe.setTitle(recipeDto.getTitle());
 
-        Optional<FoodType> possibleFoodType = foodCategoriesRepository.findByType(recipeDto.getFoodType());
+        Optional<FoodType> possibleFoodType = foodTypeRepository.findByType(recipeDto.getFoodType());
         possibleFoodType.ifPresent(recipe::setRfFoodType);
 
         // TODO : Use another way to find IDs in order to execute queries in a more efficient way
@@ -55,7 +56,9 @@ public class RecipeService {
         recipeRepository.save(recipe);
     }
 
-//    public void search( );
+    public List<Recipe> search(RecipeSearchDto recipeSearchDto){
+        return recipeRepository.findAll(new  RecipeSpecification().search(recipeSearchDto));
+    }
 
     public List<String> getAll() {
         log.debug("get all Ingredient...");

@@ -8,13 +8,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Pattern;
 
-@Validated
 @Slf4j
 @RestController
 @RequestMapping("/api/recipes")
@@ -25,7 +22,6 @@ public class RecipeController {
 
     /**
      * adding new recipe
-     *
      */
     @ApiOperation(value = "Adding New recipe")
     @PostMapping
@@ -36,17 +32,16 @@ public class RecipeController {
         ResponseEntity.status(HttpStatus.CREATED);
     }
 
-//    /**
-//     * search specific recipe
-//     *
-//     */
-//    @ApiOperation(value = "searching recipe")
-//    @GetMapping
-//    public void search(@PathVariable
-//                       RecipeSearchDto recipeSearchDto) {
-//        log.debug("searching Recipes...");
-//        return new ResponseEntity<>(recipeService.search(recipeSearchDto), HttpStatus.OK);
-//    }
+    /**
+     * search specific recipe
+     */
+    @ApiOperation(value = "searching recipe")
+    @GetMapping(value = "/search")
+    public ResponseEntity<?> search(
+            RecipeSearchDto recipeSearchDto) {
+        log.debug("searching Recipes...");
+        return new ResponseEntity<>(recipeService.search(recipeSearchDto), HttpStatus.OK);
+    }
 
     /**
      * indicates the all recipes
