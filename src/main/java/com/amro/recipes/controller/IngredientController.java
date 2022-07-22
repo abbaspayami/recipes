@@ -12,7 +12,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Validated
 @Slf4j
@@ -25,12 +24,11 @@ public class IngredientController {
 
     /**
      * adding new ingredient
-     *
      */
     @ApiOperation(value = "Adding New Ingredient")
     @PostMapping
     public void add(@RequestBody
-                        @Valid IngredientDto ingredientDto) {
+                    @Valid IngredientDto ingredientDto) {
         log.debug("Request save new Ingredient {} : ", ingredientDto.getIngredient());
         ingredientService.add((ingredientDto));
         ResponseEntity.status(HttpStatus.CREATED);

@@ -10,6 +10,7 @@ import com.amro.recipes.dao.repository.RecipeIngredientRepository;
 import com.amro.recipes.dao.repository.RecipeRepository;
 import com.amro.recipes.dto.RecipeDto;
 import com.amro.recipes.dto.RecipeSearchDto;
+import com.amro.recipes.exceptions.RecipeNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,7 @@ public class RecipeService {
 
     private final RecipeIngredientRepository recipeIngredientRepository;
 
-//    @Transactional
+    @Transactional
     public Recipe add(RecipeDto recipeDto) {
         log.info("adding Recipe...");
 
@@ -49,16 +50,7 @@ public class RecipeService {
         Recipe recipeSaved = recipeRepository.save(recipe);
 
         // TODO : Use another way to find IDs in order to execute queries in a more efficient way
-
-        for (Integer ingredientId : recipeDto.getIngredients()) {
-            RecipeIngredient recipeIngredient = new RecipeIngredient();
-            recipeIngredient.setRecipes(recipeSaved);
-            Optional<Ingredient> possibleIngredient = ingredientsRepository.findById(ingredientId);
-            if (possibleIngredient.isPresent()) {
-                recipeIngredient.setIngredients(possibleIngredient.get());
-                recipeIngredientRepository.save(recipeIngredient);
-            }
-        }
+        saveRecipeIngredients(recipeDto, recipeSaved);
         return recipeSaved;
     }
 
@@ -68,6 +60,56 @@ public class RecipeService {
 
     public List<Recipe> getAll() {
         return recipeRepository.findAll();
+    }
+
+    @Transactional
+    public List<Recipe> update(Integer id, RecipeDto recipeDto) {
+        Recipe recipe = getRecipe(id);
+        Optional<FoodType> possibleFoodType = foodTypeRepository.findByType(recipeDto.getFoodType());
+        possibleFoodType.ifPresent(recipe::setRfFoodType);
+        recipe.setTitle(recipe.getTitle());
+        recipe.setServe(recipe.getServe());
+        recipe.setInstructions(recipe.getInstructions());
+        recipeRepository.save(recipe);
+
+        List<RecipeIngredient> recipeIngredients = recipeIngredientRepository.findByRecipes(recipe.getId());
+        recipeIngredientRepository.deleteAll(recipeIngredients);
+
+        saveRecipeIngredients(recipeDto, recipe);
+
+        return recipeRepository.findAll();
+    }
+
+    /**
+     * deleting recipe
+     *
+     * @param id recipe Id
+     */
+    public void removeRecipe(Integer id) {
+        log.debug("Delete Recipe in cartId {}", id);
+        getRecipe(id);
+        recipeRepository.deleteById(id);
+    }
+
+    private void saveRecipeIngredients(RecipeDto recipeDto, Recipe recipe) {
+        for (Integer ingredientId : recipeDto.getIngredients()) {
+            RecipeIngredient recipeIngredient = new RecipeIngredient();
+            recipeIngredient.setRecipes(recipe);
+            Optional<Ingredient> possibleIngredient = ingredientsRepository.findById(ingredientId);
+            if (possibleIngredient.isPresent()) {
+                recipeIngredient.setIngredients(possibleIngredient.get());
+                recipeIngredientRepository.save(recipeIngredient);
+            }
+        }
+    }
+
+    public Recipe getRecipe(Integer id) {
+        log.debug("Get Recipe with id {}", id);
+        Optional<Recipe> possibleRecipe = recipeRepository.findById(id);
+        return possibleRecipe.orElseThrow(() -> {
+            log.debug("RecipeNotFoundException with id {}", id);
+            return new RecipeNotFoundException("Recipe Not Found.");
+        });
     }
 
 }

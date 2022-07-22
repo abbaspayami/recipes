@@ -1,6 +1,5 @@
 package com.amro.recipes.controller;
 
-import com.amro.recipes.dao.model.Recipe;
 import com.amro.recipes.dto.RecipeDto;
 import com.amro.recipes.dto.RecipeSearchDto;
 import com.amro.recipes.service.RecipeService;
@@ -53,6 +52,29 @@ public class RecipeController {
     public ResponseEntity<?> getAll() {
         log.debug("Request get all ingredient...");
         return new ResponseEntity<>(recipeService.getAll(), HttpStatus.OK);
+    }
+
+    /**
+     * update recipe
+     * @param id recipeId
+     * @param recipeDto RecipeDTO
+     * @return
+     */
+    @PutMapping(value = "/update/{id}")
+    public ResponseEntity<?> update(@PathVariable final int id, @RequestBody RecipeDto recipeDto) {
+        log.debug("Request Update for recipeId {}", id);
+        return new ResponseEntity<>(recipeService.update(id, recipeDto), HttpStatus.OK);
+    }
+
+    /**
+     * remove recipe
+     * @param id recipeId
+     */
+    @DeleteMapping(value = "/remove/{id}")
+    public void removeProduct(@PathVariable final int id) {
+        log.debug("Request remove for recipeId {}", id);
+        recipeService.removeRecipe(id);
+        ResponseEntity.noContent();
     }
 
 }
