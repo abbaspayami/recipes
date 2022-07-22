@@ -1,7 +1,9 @@
 package com.amro.recipes.controller;
 
 
+import com.amro.recipes.dao.model.Ingredient;
 import com.amro.recipes.dto.IngredientDto;
+import com.amro.recipes.dto.RecipeDto;
 import com.amro.recipes.service.IngredientService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -27,11 +29,10 @@ public class IngredientController {
      */
     @ApiOperation(value = "Adding New Ingredient")
     @PostMapping
-    public void add(@RequestBody
+    public ResponseEntity<?> add(@RequestBody
                     @Valid IngredientDto ingredientDto) {
         log.debug("Request save new Ingredient {} : ", ingredientDto.getIngredient());
-        ingredientService.add((ingredientDto));
-        ResponseEntity.status(HttpStatus.CREATED);
+        return new ResponseEntity<>(ingredientService.add(ingredientDto), HttpStatus.CREATED);
     }
 
     /**
@@ -46,16 +47,27 @@ public class IngredientController {
         return new ResponseEntity<>(ingredientService.getAll(), HttpStatus.OK);
     }
 
-//    /**
-//     * indicates the all recipes
-//     *
-//     * @return all recipes
-//     */
-//    @ApiOperation(value = "Find all recipes")
-//    @GetMapping(value = "/all")
-//    public ResponseEntity<?> getAll() {
-//        log.debug("Request get all recipes...");
-//        return new ResponseEntity<>(recipeService.getAll(), HttpStatus.OK);
-//    }
+    /**
+     * update Ingredient
+     * @param id IngredientId
+     * @param ingredientDto IngredientDto
+     * @return
+     */
+    @PutMapping(value = "/update/{id}")
+    public ResponseEntity<?> update(@PathVariable final int id, @RequestBody IngredientDto ingredientDto) {
+        log.debug("Request Update for ingredient {}", id);
+        return new ResponseEntity<>(ingredientService.update(id, ingredientDto), HttpStatus.OK);
+    }
+
+    /**
+     * remove recipe
+     * @param id recipeId
+     */
+    @DeleteMapping(value = "/remove/{id}")
+    public void removeProduct(@PathVariable final int id) {
+        log.debug("Request remove for recipeId {}", id);
+        ingredientService.removeIngredient(id);
+        ResponseEntity.noContent();
+    }
 
 }

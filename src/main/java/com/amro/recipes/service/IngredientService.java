@@ -2,14 +2,16 @@ package com.amro.recipes.service;
 
 import com.amro.recipes.dao.model.Ingredient;
 import com.amro.recipes.dao.repository.IngredientsRepository;
+import com.amro.recipes.dao.repository.RecipeIngredientRepository;
 import com.amro.recipes.dto.IngredientDto;
 import com.amro.recipes.exceptions.IngredientAlreadyExistException;
+import com.amro.recipes.exceptions.IngredientNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -17,12 +19,13 @@ import java.util.stream.Collectors;
 public class IngredientService {
 
     private final IngredientsRepository ingredientsRepository;
+    private final RecipeIngredientRepository recipeIngredientRepository;
 
 
-    public void add(IngredientDto ingredientDto) {
+    public Ingredient add(IngredientDto ingredientDto) {
         log.info("adding Ingredient...");
         checkingIngredientIsExist(ingredientDto.getIngredient());
-        saveIngredient(ingredientDto.getIngredient());
+        return saveIngredient(ingredientDto.getIngredient());
     }
 
     public List<Ingredient> getAll() {
@@ -38,21 +41,40 @@ public class IngredientService {
         }
     }
 
-    private void saveIngredient(String ingredient) {
+    private Ingredient saveIngredient(String ingredient) {
         log.info("Starting to save ingredient in db...");
         var ingredients = new Ingredient();
         ingredients.setIngredient(ingredient);
-        ingredientsRepository.save(ingredients);
+        Ingredient ingredientSaved = ingredientsRepository.save(ingredients);
         log.info("Ingredient saved to db successfully.");
+        return ingredientSaved;
     }
 
-//    public List<String> getAll() {
-//        log.debug("get all Ingredient...");
-//
-//        return ingredientsRepository.findAll()
-//                .stream()
-//                .map(Ingredient::getIngredient)
-//                .collect(Collectors.toList());
-//    }
+    public Ingredient update(Integer id, IngredientDto ingredientDto) {
+        Ingredient ingredient = getIngredient(id);
+        ingredient.setIngredient(ingredientDto.getIngredient());
+        return ingredientsRepository.save(ingredient);
+    }
+
+    /**
+     * deleting Ingredient
+     *
+     * @param id Ingredient Id
+     */
+    public void removeIngredient(Integer id) {
+        log.debug("Delete Ingredient in id {}", id);
+        getIngredient(id);
+        ingredientsRepository.deleteById(id);
+        recipeIngredientRepository.deleteByIngredients_Id(id);
+    }
+
+    public Ingredient getIngredient(Integer id) {
+        log.debug("Get Recipe with id {}", id);
+        Optional<Ingredient> possibleIngredient = ingredientsRepository.findById(id);
+        return possibleIngredient.orElseThrow(() -> {
+            log.debug("IngredientNotFoundException with id {}", id);
+            return new IngredientNotFoundException("Ingredient Not Found.");
+        });
+    }
 
 }

@@ -1,7 +1,7 @@
 package com.amro.recipes.exceptions;
 
 /**
- * To throw if requested recipe does not exists in database
+ * To throw if requested recipe does not exist in database
  *
  * @author Abbas
  */

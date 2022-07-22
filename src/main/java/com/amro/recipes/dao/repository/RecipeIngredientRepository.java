@@ -9,4 +9,6 @@ public interface RecipeIngredientRepository extends JpaRepository<RecipeIngredie
 
     List<RecipeIngredient> findByRecipes(Integer recipeId);
 
+    void deleteByIngredients_Id(Integer id);
+
 }

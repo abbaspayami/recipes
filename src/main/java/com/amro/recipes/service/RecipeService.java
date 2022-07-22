@@ -86,7 +86,7 @@ public class RecipeService {
      * @param id recipe Id
      */
     public void removeRecipe(Integer id) {
-        log.debug("Delete Recipe in cartId {}", id);
+        log.debug("Delete Recipe in id {}", id);
         getRecipe(id);
         recipeRepository.deleteById(id);
     }
