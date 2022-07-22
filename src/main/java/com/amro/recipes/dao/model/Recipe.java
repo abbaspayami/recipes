@@ -33,10 +33,10 @@ public class Recipe {
     @JoinColumn(name = "fk_foodType_id", referencedColumnName = "id")
     private FoodType rfFoodType;
 
-    @JsonIgnore
-    @JoinTable
-    @OneToMany
-    private List<Ingredient> ingredients;
+//    @JsonIgnore
+//    @JoinTable
+//    @OneToMany
+//    private List<Ingredient> ingredients;
 
 
 }

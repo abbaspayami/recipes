@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -44,5 +45,14 @@ public class IngredientService {
         ingredientsRepository.save(ingredients);
         log.info("Ingredient saved to db successfully.");
     }
+
+//    public List<String> getAll() {
+//        log.debug("get all Ingredient...");
+//
+//        return ingredientsRepository.findAll()
+//                .stream()
+//                .map(Ingredient::getIngredient)
+//                .collect(Collectors.toList());
+//    }
 
 }

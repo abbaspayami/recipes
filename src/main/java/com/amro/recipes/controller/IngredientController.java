@@ -17,7 +17,7 @@ import java.util.List;
 @Validated
 @Slf4j
 @RestController
-@RequestMapping("/api/ingredient")
+@RequestMapping("/api/ingredients")
 @RequiredArgsConstructor
 public class IngredientController {
 
@@ -42,10 +42,22 @@ public class IngredientController {
      * @return current status
      */
     @ApiOperation(value = "Find all ingredients")
-    @GetMapping(value = "/all")
+    @GetMapping
     public ResponseEntity<?> getAll() {
         log.debug("Request get all ingredient...");
         return new ResponseEntity<>(ingredientService.getAll(), HttpStatus.OK);
     }
+
+//    /**
+//     * indicates the all recipes
+//     *
+//     * @return all recipes
+//     */
+//    @ApiOperation(value = "Find all recipes")
+//    @GetMapping(value = "/all")
+//    public ResponseEntity<?> getAll() {
+//        log.debug("Request get all recipes...");
+//        return new ResponseEntity<>(recipeService.getAll(), HttpStatus.OK);
+//    }
 
 }

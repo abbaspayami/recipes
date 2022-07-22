@@ -1,5 +1,6 @@
 package com.amro.recipes.controller;
 
+import com.amro.recipes.dao.model.Recipe;
 import com.amro.recipes.dto.RecipeDto;
 import com.amro.recipes.dto.RecipeSearchDto;
 import com.amro.recipes.service.RecipeService;
@@ -25,11 +26,10 @@ public class RecipeController {
      */
     @ApiOperation(value = "Adding New recipe")
     @PostMapping
-    public void add(@RequestBody
+    public ResponseEntity<?> add(@RequestBody
                     @Valid RecipeDto recipeDto) {
         log.debug("Request save new Recipe...");
-        recipeService.add(recipeDto);
-        ResponseEntity.status(HttpStatus.CREATED);
+        return new ResponseEntity<>(recipeService.add(recipeDto), HttpStatus.CREATED);
     }
 
     /**
@@ -44,14 +44,14 @@ public class RecipeController {
     }
 
     /**
-     * indicates the all recipes
+     * get all recipes
      *
      * @return all recipes
      */
     @ApiOperation(value = "Find all recipes")
-    @GetMapping(value = "/all")
+    @GetMapping
     public ResponseEntity<?> getAll() {
-        log.debug("Request get all recipes...");
+        log.debug("Request get all ingredient...");
         return new ResponseEntity<>(recipeService.getAll(), HttpStatus.OK);
     }
 

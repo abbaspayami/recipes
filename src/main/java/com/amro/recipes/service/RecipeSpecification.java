@@ -5,26 +5,34 @@ import com.amro.recipes.dto.RecipeSearchDto;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 public class RecipeSpecification {
 
     public Specification<Recipe> search(RecipeSearchDto filter) {
         return Specification.where(serve(filter))
-//                .and(ingredient(filter))
+                .and(hasIngredient(filter))
+//                .and(hasNotIngredient(filter))
                 .and(instruction(filter))
                 .and(foodType(filter));
     }
 
-//    public Specification<Recipe> ingredient(List<Long> organizationLevelIds) {
-//        return (root, query, cb) -> {
-//            if (organizationLevelIds == null || organizationLevelIds.isEmpty()) {
-//                return null;
-//            }
-//            return root.get("organization").get("id").in(organizationLevelIds);
-//        };
-//    }
+    public Specification<Recipe> hasIngredient(RecipeSearchDto recipeSearchDto) {
+        return (root, query, cb) -> {
+            if (recipeSearchDto.getHasIngredients() == null || recipeSearchDto.getHasIngredients().isEmpty()) {
+                return null;
+            }
+            return root.get("ingredients").in(recipeSearchDto.getHasIngredients());
+        };
+    }
+
+    public Specification<Recipe> hasNotIngredient(RecipeSearchDto recipeSearchDto) {
+        return (root, query, cb) -> {
+            if (recipeSearchDto.getHasNotIngredients() == null || recipeSearchDto.getHasNotIngredients().isEmpty()) {
+                return null;
+            }
+            return cb.not(root.get("ingredients").in(recipeSearchDto.getHasNotIngredients()));
+        };
+    }
 
     public Specification<Recipe> serve(RecipeSearchDto recipeSearchDto) {
         return (root, query, cb) -> {
@@ -49,7 +57,7 @@ public class RecipeSpecification {
             if (recipeSearchDto.getFoodType() == null) {
                 return null;
             }
-            return cb.equal(root.get("fk_food_type_id").get("id"), recipeSearchDto.getFoodType());
+            return cb.equal(root.get("rfFoodType").get("id"), recipeSearchDto.getFoodType());
         };
     }
 
