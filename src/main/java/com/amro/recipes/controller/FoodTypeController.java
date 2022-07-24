@@ -27,11 +27,10 @@ public class FoodTypeController {
      */
     @ApiOperation(value = "Adding New food category")
     @PostMapping
-    public void add(@RequestBody
+    public ResponseEntity<?> add(@RequestBody
                     @Valid FoodTypeDto foodTypeDto) {
         log.debug("Request save new  food category {} : ", foodTypeDto.getFoodType());
-        foodCategoriesService.add(foodTypeDto);
-        ResponseEntity.status(HttpStatus.CREATED);
+        return new ResponseEntity<>(foodCategoriesService.add(foodTypeDto), HttpStatus.CREATED);
     }
 
     /**

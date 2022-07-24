@@ -18,10 +18,10 @@ public class FoodCategoriesService {
 
     private final FoodTypeRepository foodTypeRepository;
 
-    public void add(FoodTypeDto foodTypeDto) {
+    public FoodType add(FoodTypeDto foodTypeDto) {
         log.info("adding Food Type...");
         checkingFoodCategoriesIsExist(foodTypeDto.getFoodType());
-        saveFoodCategories(foodTypeDto.getFoodType());
+        return saveFoodCategories(foodTypeDto.getFoodType());
     }
 
     public List<FoodType> getAll() {
@@ -37,12 +37,13 @@ public class FoodCategoriesService {
         }
     }
 
-    private void saveFoodCategories(String foodType) {
+    private FoodType saveFoodCategories(String foodType) {
         log.info("Starting to save ingredient in db...");
         var foodCategories = new FoodType();
         foodCategories.setType(foodType);
-        foodTypeRepository.save(foodCategories);
+        FoodType foodTypeSaved = foodTypeRepository.save(foodCategories);
         log.info("Food Category saved to db successfully.");
+        return foodTypeSaved;
     }
 
 }
