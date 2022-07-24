@@ -16,8 +16,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Business Layer
@@ -54,7 +56,27 @@ public class RecipeService {
     }
 
     public List<Recipe> search(RecipeSearchDto recipeSearchDto) {
-        return recipeRepository.findAll(new RecipeSpecification().search(recipeSearchDto));
+        //HasIngredient
+        List<Integer> ingredientIds = new ArrayList<>();
+        for (String ingredient : recipeSearchDto.getHasIngredients()) {
+            Optional<Ingredient> possibleIngredient = ingredientsRepository.findByIngredient(ingredient);
+            possibleIngredient.ifPresent(value -> ingredientIds.add(value.getId()));
+        }
+        //HasNotIngredient
+        List<Integer> notIngredientIds = new ArrayList<>();
+        for (String ingredient : recipeSearchDto.getHasNotIngredients()) {
+            Optional<Ingredient> possibleNotIngredient = ingredientsRepository.findByIngredient(ingredient);
+            possibleNotIngredient.ifPresent(value -> notIngredientIds.add(value.getId()));
+        }
+        List<RecipeIngredient> recipeIngredientList = recipeIngredientRepository.findAll(new RecipeSpecification().search(recipeSearchDto.getFoodType(), recipeSearchDto.getServe()
+                , recipeSearchDto.getInstruction(), ingredientIds, notIngredientIds));
+//        List<Recipe> recipes = new ArrayList<>();
+        return recipeIngredientList.stream().map(RecipeIngredient::getRecipes).distinct().collect(Collectors.toList());
+//        for (Recipe recipe : recipeIngredientList.stream().map(RecipeIngredient::getRecipes).collect(Collectors.toList())) {
+//            Optional<Recipe> possibleRecipe = recipeRepository.findById(recipe.getId());
+//            possibleRecipe.ifPresent(recipes::add);
+//        }
+//        return recipes;
     }
 
     public List<Recipe> getAll() {

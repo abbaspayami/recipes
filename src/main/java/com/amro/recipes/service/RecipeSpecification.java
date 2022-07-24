@@ -1,63 +1,64 @@
 package com.amro.recipes.service;
 
-import com.amro.recipes.dao.model.Recipe;
-import com.amro.recipes.dto.RecipeSearchDto;
+import com.amro.recipes.dao.model.RecipeIngredient;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class RecipeSpecification {
 
-    public Specification<Recipe> search(RecipeSearchDto filter) {
-        return Specification.where(serve(filter))
-                .and(hasIngredient(filter))
-//                .and(hasNotIngredient(filter))
-                .and(instruction(filter))
-                .and(foodType(filter));
+    public Specification<RecipeIngredient> search(String foodType, Integer serve, String instruction, List<Integer> hasIngredient, List<Integer> hasNotIngredient) {
+        return Specification.where(serve(serve))
+                .and(hasIngredient(hasIngredient))
+                .and(hasNotIngredient(hasNotIngredient))
+                .and(instruction(instruction))
+                .and(foodType(foodType));
     }
 
-    public Specification<Recipe> hasIngredient(RecipeSearchDto recipeSearchDto) {
+    public Specification<RecipeIngredient> hasIngredient(List<Integer> hasIngredients) {
         return (root, query, cb) -> {
-            if (recipeSearchDto.getHasIngredients() == null || recipeSearchDto.getHasIngredients().isEmpty()) {
+            if (hasIngredients == null || hasIngredients.isEmpty()) {
                 return null;
             }
-            return root.get("ingredients").in(recipeSearchDto.getHasIngredients());
+            return root.get("ingredients").get("id").in(hasIngredients);
         };
     }
 
-    public Specification<Recipe> hasNotIngredient(RecipeSearchDto recipeSearchDto) {
+    public Specification<RecipeIngredient> hasNotIngredient(List<Integer> hasNotIngredient) {
         return (root, query, cb) -> {
-            if (recipeSearchDto.getHasNotIngredients() == null || recipeSearchDto.getHasNotIngredients().isEmpty()) {
+            if (hasNotIngredient == null || hasNotIngredient.isEmpty()) {
                 return null;
             }
-            return cb.not(root.get("ingredients").in(recipeSearchDto.getHasNotIngredients()));
+            return root.get("ingredients").get("id").in(hasNotIngredient).not();
         };
     }
 
-    public Specification<Recipe> serve(RecipeSearchDto recipeSearchDto) {
+    public Specification<RecipeIngredient> serve(Integer serve) {
         return (root, query, cb) -> {
-            if (recipeSearchDto.getServe() == null) {
+            if (serve == null) {
                 return null;
             }
-            return cb.equal(root.get("serve"), recipeSearchDto.getServe());
+            return cb.equal(root.get("recipes").get("serve"), serve);
         };
     }
 
-    public Specification<Recipe> instruction(RecipeSearchDto recipeSearchDto) {
+    public Specification<RecipeIngredient> instruction(String instruction) {
         return (root, query, cb) -> {
-            if (recipeSearchDto.getInstruction() == null) {
+            if (instruction == null) {
                 return null;
             }
-            return cb.like(cb.lower(root.get("instructions")), "%"+recipeSearchDto.getInstruction()+"%");
+            return cb.like(cb.lower(root.get("recipes").get("instructions")), "%" + instruction + "%");
         };
     }
 
-    public Specification<Recipe> foodType(RecipeSearchDto recipeSearchDto) {
+    public Specification<RecipeIngredient> foodType(String foodType) {
         return (root, query, cb) -> {
-            if (recipeSearchDto.getFoodType() == null) {
+            if (foodType == null) {
                 return null;
             }
-            return cb.equal(root.get("rfFoodType").get("id"), recipeSearchDto.getFoodType());
+            return cb.equal(root.get("recipes").get("rfFoodType").get("type"), foodType);
         };
     }
 

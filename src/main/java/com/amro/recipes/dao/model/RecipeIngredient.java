@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "recipe_Ingredient")
@@ -22,12 +21,10 @@ public class RecipeIngredient {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ingredientId")
-    @JsonIgnore
     private Ingredient ingredients;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "recipeId")
-    @JsonIgnore
     private Recipe recipes;
 
 }

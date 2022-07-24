@@ -7,13 +7,13 @@ import java.util.List;
 @Data
 public class RecipeSearchDto {
 
-    private Integer foodType;
+    private String foodType;
 
     private Integer serve;
 
-    private List<Integer> hasIngredients;
+    private List<String> hasIngredients;
 
-    private List<Integer> hasNotIngredients;
+    private List<String> hasNotIngredients;
 
     private String instruction;
 
