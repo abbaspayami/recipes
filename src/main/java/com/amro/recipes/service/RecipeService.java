@@ -49,7 +49,6 @@ public class RecipeService {
 
         Recipe recipeSaved = recipeRepository.save(recipe);
 
-        // TODO : Use another way to find IDs in order to execute queries in a more efficient way
         saveRecipeIngredients(recipeDto, recipeSaved);
         return recipeSaved;
     }

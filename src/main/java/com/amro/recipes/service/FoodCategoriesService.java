@@ -24,13 +24,10 @@ public class FoodCategoriesService {
         saveFoodCategories(foodTypeDto.getFoodType());
     }
 
-    public List<String> getAll() {
+    public List<FoodType> getAll() {
         log.debug("get all Ingredient...");
 
-        return foodTypeRepository.findAll()
-                .stream()
-                .map(FoodType::getType)
-                .collect(Collectors.toList());
+        return foodTypeRepository.findAll();
     }
 
     public void checkingFoodCategoriesIsExist(String foodType) {

@@ -16,7 +16,7 @@ public class TestUtils {
 
     public static IngredientDto ingredientDto() {
         IngredientDto ingredientDto = new IngredientDto();
-        ingredientDto.setIngredient("Potato");
+        ingredientDto.setIngredient("potatoes");
         return ingredientDto;
     }
 

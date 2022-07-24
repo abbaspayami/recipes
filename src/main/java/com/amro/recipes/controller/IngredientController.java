@@ -1,9 +1,7 @@
 package com.amro.recipes.controller;
 
 
-import com.amro.recipes.dao.model.Ingredient;
 import com.amro.recipes.dto.IngredientDto;
-import com.amro.recipes.dto.RecipeDto;
 import com.amro.recipes.service.IngredientService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

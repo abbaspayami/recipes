@@ -61,30 +61,4 @@ public class RecipeSpecification {
         };
     }
 
-//    public Specification<Terminal> terminals(TerminalFilterDTO terminalFilterDto) {
-//        return (root, query, cb) -> {
-//            if (terminalFilterDto.getTerminals() == null || terminalFilterDto.getTerminals().isEmpty()) {
-//                return null;
-//            }
-//            List<Long> terminals = new ArrayList<>();
-//            for (Terminal terminal : terminalFilterDto.getTerminals()) {
-//                terminals.add(terminal.getTerminalId());
-//            }
-//            return root.get("terminalId").in(terminals);
-//        };
-//    }
-//
-//    public Specification<Terminal> location(TerminalFilterDTO terminalFilterDto) {
-//        return (root, query, cb) -> {
-//            if (terminalFilterDto.getLocations() == null || terminalFilterDto.getLocations().isEmpty()) {
-//                return null;
-//            }
-//            List<Long> locations = new ArrayList<>();
-//            for (Location location : terminalFilterDto.getLocations()) {
-//                locations.add(location.getId());
-//            }
-//            return root.get("organization").get("location").get("id").in(locations);
-//        };
-//    }
-
 }
