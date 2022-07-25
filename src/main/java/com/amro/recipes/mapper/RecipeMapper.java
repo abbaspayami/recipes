@@ -2,13 +2,16 @@ package com.amro.recipes.mapper;
 
 import com.amro.recipes.dao.model.Recipe;
 import com.amro.recipes.dto.RecipeDto;
+import com.amro.recipes.dto.RecipeResponseDto;
 import org.mapstruct.Mapper;
+
+import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface RecipeMapper {
 
-    Recipe recipeToRecipeDto(RecipeDto recipeDto);
+    Recipe recipeDtoToRecipe(RecipeDto recipeDto);
 
-    RecipeDto recipeDtoToRecipe(Recipe recipe);
+    List<RecipeResponseDto> recipeToRecipeDto(List<Recipe> recipes);
 
 }

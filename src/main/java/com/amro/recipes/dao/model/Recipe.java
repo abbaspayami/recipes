@@ -31,7 +31,6 @@ public class Recipe implements Serializable {
     @Column(name = "instructions")
     private String instructions;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_foodType_id", referencedColumnName = "id")
     private FoodType rfFoodType;

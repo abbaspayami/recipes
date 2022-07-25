@@ -15,7 +15,7 @@ import javax.validation.Valid;
 @Validated
 @Slf4j
 @RestController
-@RequestMapping("/api/foodCategories")
+@RequestMapping("/api/v1/foodCategories")
 @RequiredArgsConstructor
 public class FoodTypeController {
 

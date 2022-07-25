@@ -15,7 +15,7 @@ public class RecipeDto {
     private Integer serve;
 
     @NotNull(message = "is Mandatory")
-    private String instruction;
+    private String instructions;
 
     @NotNull(message = "is Mandatory")
     private List<Integer> ingredients;
