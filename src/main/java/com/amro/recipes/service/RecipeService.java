@@ -11,8 +11,11 @@ import com.amro.recipes.dao.repository.RecipeRepository;
 import com.amro.recipes.dto.RecipeDto;
 import com.amro.recipes.dto.RecipeSearchDto;
 import com.amro.recipes.exceptions.RecipeNotFoundException;
+import com.amro.recipes.mapper.RecipeMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,14 +40,15 @@ public class RecipeService {
 
     private final RecipeIngredientRepository recipeIngredientRepository;
 
+    private final RecipeMapper recipeMapper;
+
     @Transactional
     public Recipe add(RecipeDto recipeDto) {
         log.info("adding Recipe...");
-
-        Recipe recipe = new Recipe();
-        recipe.setInstructions(recipeDto.getInstruction());
-        recipe.setServe(recipeDto.getServe());
-        recipe.setTitle(recipeDto.getTitle());
+        Recipe recipe = recipeMapper.recipeToRecipeDto(recipeDto);
+//        recipe.setInstructions(recipeDto.getInstruction());
+//        recipe.setServe(recipeDto.getServe());
+//        recipe.setTitle(recipeDto.getTitle());
 
         Optional<FoodType> possibleFoodType = foodTypeRepository.findByType(recipeDto.getFoodType());
         possibleFoodType.ifPresent(recipe::setRfFoodType);

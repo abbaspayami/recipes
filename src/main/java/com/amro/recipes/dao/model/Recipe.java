@@ -36,10 +36,4 @@ public class Recipe implements Serializable {
     @JoinColumn(name = "fk_foodType_id", referencedColumnName = "id")
     private FoodType rfFoodType;
 
-//    @JsonIgnore
-//    @JoinTable
-//    @OneToMany
-//    private List<Ingredient> ingredients;
-
-
 }
