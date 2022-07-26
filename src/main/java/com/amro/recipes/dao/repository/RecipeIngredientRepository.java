@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface RecipeIngredientRepository extends JpaRepository<RecipeIngredient, Integer>, JpaSpecificationExecutor<RecipeIngredient> {
 
-    List<RecipeIngredient> findByRecipes(Integer recipeId);
+    List<RecipeIngredient> findByRecipes_Id(Integer recipeId);
 
     void deleteByIngredients_Id(Integer id);
 

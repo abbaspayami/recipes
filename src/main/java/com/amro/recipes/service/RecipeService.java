@@ -11,6 +11,7 @@ import com.amro.recipes.dao.repository.RecipeRepository;
 import com.amro.recipes.dto.RecipeDto;
 import com.amro.recipes.dto.RecipeResponseDto;
 import com.amro.recipes.dto.RecipeSearchDto;
+import com.amro.recipes.exceptions.FoodTypeNotFoundException;
 import com.amro.recipes.exceptions.RecipeNotFoundException;
 import com.amro.recipes.mapper.RecipeMapper;
 import lombok.RequiredArgsConstructor;
@@ -45,8 +46,7 @@ public class RecipeService {
     public Recipe add(RecipeDto recipeDto) {
         log.info("adding Recipe...");
         Recipe recipe = recipeMapper.recipeDtoToRecipe(recipeDto);
-        Optional<FoodType> possibleFoodType = foodTypeRepository.findByType(recipeDto.getFoodType());
-        possibleFoodType.ifPresent(recipe::setRfFoodType);
+
 
         Recipe recipeSaved = recipeRepository.save(recipe);
         saveRecipeIngredients(recipeDto, recipeSaved);
@@ -81,22 +81,21 @@ public class RecipeService {
         return recipeMapper.recipeToRecipeDto(recipeRepository.findAll());
     }
 
-    @Transactional
-    public List<Recipe> update(Integer id, RecipeDto recipeDto) {
+//    @Transactional
+    public Recipe update(Integer id, RecipeDto recipeDto) {
         Recipe recipe = getRecipe(id);
+        recipe = recipeMapper.recipeDtoToRecipe(recipeDto);
+        recipe.setId(id);
         Optional<FoodType> possibleFoodType = foodTypeRepository.findByType(recipeDto.getFoodType());
         possibleFoodType.ifPresent(recipe::setRfFoodType);
-        recipe.setTitle(recipe.getTitle());
-        recipe.setServe(recipe.getServe());
-        recipe.setInstructions(recipe.getInstructions());
         recipeRepository.save(recipe);
 
-        List<RecipeIngredient> recipeIngredients = recipeIngredientRepository.findByRecipes(recipe.getId());
+        List<RecipeIngredient> recipeIngredients = recipeIngredientRepository.findByRecipes_Id(recipe.getId());
         recipeIngredientRepository.deleteAll(recipeIngredients);
 
         saveRecipeIngredients(recipeDto, recipe);
 
-        return recipeRepository.findAll();
+        return getRecipe(id);
     }
 
     /**
@@ -128,6 +127,14 @@ public class RecipeService {
         return possibleRecipe.orElseThrow(() -> {
             log.debug("RecipeNotFoundException with id {}", id);
             return new RecipeNotFoundException("Recipe Not Found.");
+        });
+    }
+
+    public FoodType getFoodType(RecipeDto recipeDto) {
+        Optional<FoodType> possibleFoodType = foodTypeRepository.findByType(recipeDto.getFoodType());
+        return possibleFoodType.orElseThrow(() -> {
+            log.debug("FoodTypeNotFoundException with id {}", recipeDto.getFoodType());
+            return new FoodTypeNotFoundException("FoodType Not Found.");
         });
     }
 
