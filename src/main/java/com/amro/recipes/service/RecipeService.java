@@ -81,7 +81,7 @@ public class RecipeService {
         return recipeMapper.recipeToRecipeDto(recipeRepository.findAll());
     }
 
-//    @Transactional
+    @Transactional
     public Recipe update(Integer id, RecipeDto recipeDto) {
         Recipe recipe = getRecipe(id);
         recipe = recipeMapper.recipeDtoToRecipe(recipeDto);
