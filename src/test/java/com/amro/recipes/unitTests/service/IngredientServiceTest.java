@@ -1,4 +1,4 @@
-package com.amro.recipes.unitTests;
+package com.amro.recipes.unitTests.service;
 
 
 import com.amro.recipes.dao.repository.IngredientsRepository;

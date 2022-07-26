@@ -1,5 +1,6 @@
 package com.amro.recipes.dao.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "ingredients")
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class Ingredient {
 

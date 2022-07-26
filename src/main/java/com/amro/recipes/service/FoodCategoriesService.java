@@ -3,13 +3,12 @@ package com.amro.recipes.service;
 import com.amro.recipes.dao.model.FoodType;
 import com.amro.recipes.dao.repository.FoodTypeRepository;
 import com.amro.recipes.dto.FoodTypeDto;
-import com.amro.recipes.exceptions.FoodCategoryAlreadyExistException;
+import com.amro.recipes.exceptions.FoodTypeAlreadyExistException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -33,7 +32,7 @@ public class FoodCategoriesService {
     public void checkingFoodCategoriesIsExist(String foodType) {
         log.info("checking Ingredient is already Exist...");
         if (foodTypeRepository.existsFoodTypeByType(foodType)) {
-            throw new FoodCategoryAlreadyExistException("The Food Type is already exist in the database: ");
+            throw new FoodTypeAlreadyExistException("The Food Type is already exist in the database: ");
         }
     }
 

@@ -2,6 +2,10 @@ package com.amro.recipes.common;
 
 import com.amro.recipes.dao.model.Ingredient;
 import com.amro.recipes.dto.IngredientDto;
+import com.amro.recipes.dto.RecipeDto;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestUtils {
 
@@ -24,6 +28,20 @@ public class TestUtils {
         IngredientDto ingredientDto = new IngredientDto();
         ingredientDto.setIngredient("salmon");
         return ingredientDto;
+    }
+
+    public static RecipeDto recipeDto() {
+        RecipeDto recipeDto = new RecipeDto();
+        recipeDto.setFoodType("vegan");
+        recipeDto.setInstructions("test, test");
+        recipeDto.setServe(2);
+        recipeDto.setTitle("pizza");
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        recipeDto.setIngredients(list);
+        return recipeDto;
     }
 
 }

@@ -1,4 +1,4 @@
-package com.amro.recipes.unitTests;
+package com.amro.recipes.unitTests.repository;
 
 import com.amro.recipes.common.TestUtils;
 import com.amro.recipes.dao.model.Ingredient;

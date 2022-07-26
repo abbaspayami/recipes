@@ -6,14 +6,14 @@ package com.amro.recipes.exceptions;
  *
  * @author Abbas
  */
-public class FoodCategoryAlreadyExistException extends RuntimeException {
+public class FoodTypeAlreadyExistException extends RuntimeException {
 
     /**
      * constructor
      *
      * @param message given message
      */
-    public FoodCategoryAlreadyExistException(String message) {
+    public FoodTypeAlreadyExistException(String message) {
         super(message);
     }
 }
