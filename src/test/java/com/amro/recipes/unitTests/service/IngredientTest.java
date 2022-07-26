@@ -11,7 +11,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
  * @author Abbas
  */
 @ExtendWith(SpringExtension.class)
-public class IngredientServiceTest {
+public class IngredientTest {
 
     @MockBean
     private IngredientsRepository ingredientsRepository;

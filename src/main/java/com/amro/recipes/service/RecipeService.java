@@ -37,9 +37,7 @@ public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final IngredientsRepository ingredientsRepository;
     private final FoodTypeRepository foodTypeRepository;
-
     private final RecipeIngredientRepository recipeIngredientRepository;
-
     private final RecipeMapper recipeMapper;
 
     @Transactional
@@ -86,8 +84,7 @@ public class RecipeService {
         Recipe recipe = getRecipe(id);
         recipe = recipeMapper.recipeDtoToRecipe(recipeDto);
         recipe.setId(id);
-        Optional<FoodType> possibleFoodType = foodTypeRepository.findByType(recipeDto.getFoodType());
-        possibleFoodType.ifPresent(recipe::setRfFoodType);
+        recipe.setRfFoodType(getFoodType(recipeDto.getFoodType()));
         recipeRepository.save(recipe);
 
         List<RecipeIngredient> recipeIngredients = recipeIngredientRepository.findByRecipes_Id(recipe.getId());
@@ -130,10 +127,10 @@ public class RecipeService {
         });
     }
 
-    public FoodType getFoodType(RecipeDto recipeDto) {
-        Optional<FoodType> possibleFoodType = foodTypeRepository.findByType(recipeDto.getFoodType());
+    public FoodType getFoodType(String foodType) {
+        Optional<FoodType> possibleFoodType = foodTypeRepository.findByType(foodType);
         return possibleFoodType.orElseThrow(() -> {
-            log.debug("FoodTypeNotFoundException with id {}", recipeDto.getFoodType());
+            log.debug("FoodTypeNotFoundException with type {}", foodType);
             return new FoodTypeNotFoundException("FoodType Not Found.");
         });
     }
