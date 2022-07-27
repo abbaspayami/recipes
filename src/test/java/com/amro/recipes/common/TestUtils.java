@@ -3,6 +3,7 @@ package com.amro.recipes.common;
 import com.amro.recipes.dao.model.FoodType;
 import com.amro.recipes.dao.model.Ingredient;
 import com.amro.recipes.dao.model.Recipe;
+import com.amro.recipes.dto.FoodTypeDto;
 import com.amro.recipes.dto.IngredientDto;
 import com.amro.recipes.dto.RecipeDto;
 
@@ -61,6 +62,17 @@ public class TestUtils {
         list.add(3);
         recipeDto.setIngredients(list);
         return recipeDto;
+    }
+
+    public static FoodTypeDto newFoodTypeDto(){
+        FoodTypeDto foodTypeDto = new FoodTypeDto();
+        foodTypeDto.setFoodType("vegetarian");
+        return foodTypeDto;
+    }
+    public static FoodTypeDto newAgainFoodTypeDto(){
+        FoodTypeDto foodTypeDto = new FoodTypeDto();
+        foodTypeDto.setFoodType("vegan");
+        return foodTypeDto;
     }
 
     public static FoodType newFoodType() {

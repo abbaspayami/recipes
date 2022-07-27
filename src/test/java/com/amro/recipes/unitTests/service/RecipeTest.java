@@ -43,9 +43,7 @@ public class RecipeTest {
     private RecipeIngredientRepository recipeIngredientRepository;
     @MockBean
     private RecipeMapper recipeMapper;
-
     private RecipeService recipeService;
-
     private Recipe recipe;
     private FoodType foodType;
 
@@ -76,15 +74,15 @@ public class RecipeTest {
         assertNotNull(recipeResponseDtos);
     }
 
-    /**
-     * loading existing recipes
-     */
-    @Test
-    void updateRecipes() {
-        List<RecipeResponseDto> recipeResponseDtos = recipeService.getAll();
-
-        assertNotNull(recipeResponseDtos);
-    }
+//    /**
+//     * loading existing recipes
+//     */
+//    @Test
+//    void updateRecipes() {
+//        List<RecipeResponseDto> recipeResponseDtos = recipeService.getAll();
+//
+//        assertNotNull(recipeResponseDtos);
+//    }
 
     /**
      * loading existing recipe

@@ -1,7 +1,7 @@
 package com.amro.recipes.controller;
 
 import com.amro.recipes.dto.FoodTypeDto;
-import com.amro.recipes.service.FoodCategoriesService;
+import com.amro.recipes.service.FoodTypeService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class FoodTypeController {
 
-    private final FoodCategoriesService foodCategoriesService;
+    private final FoodTypeService foodTypeService;
 
     /**
      * adding new food category
@@ -30,7 +30,7 @@ public class FoodTypeController {
     public ResponseEntity<?> add(@RequestBody
                     @Valid FoodTypeDto foodTypeDto) {
         log.debug("Request save new  food category {} : ", foodTypeDto.getFoodType());
-        return new ResponseEntity<>(foodCategoriesService.add(foodTypeDto), HttpStatus.CREATED);
+        return new ResponseEntity<>(foodTypeService.add(foodTypeDto), HttpStatus.CREATED);
     }
 
     /**
@@ -42,7 +42,7 @@ public class FoodTypeController {
     @GetMapping(value = "/all")
     public ResponseEntity<?> getAll() {
         log.debug("Request get all food categories...");
-        return new ResponseEntity<>(foodCategoriesService.getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(foodTypeService.getAll(), HttpStatus.OK);
     }
 
 }

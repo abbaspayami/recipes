@@ -13,26 +13,25 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class FoodCategoriesService {
+public class FoodTypeService {
 
     private final FoodTypeRepository foodTypeRepository;
 
     public FoodType add(FoodTypeDto foodTypeDto) {
         log.info("adding Food Type...");
-        checkingFoodCategoriesIsExist(foodTypeDto.getFoodType());
+        checkingFoodTypeIsExist(foodTypeDto.getFoodType());
         return saveFoodCategories(foodTypeDto.getFoodType());
     }
 
     public List<FoodType> getAll() {
-        log.debug("get all Ingredient...");
-
+        log.debug("Get all Food Type...");
         return foodTypeRepository.findAll();
     }
 
-    public void checkingFoodCategoriesIsExist(String foodType) {
+    public void checkingFoodTypeIsExist(String foodType) {
         log.info("checking Ingredient is already Exist...");
         if (foodTypeRepository.existsFoodTypeByType(foodType)) {
-            throw new FoodTypeAlreadyExistException("The Food Type is already exist in the database: ");
+            throw new FoodTypeAlreadyExistException("The Food Type is already exist.");
         }
     }
 
