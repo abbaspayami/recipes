@@ -12,6 +12,7 @@ import com.amro.recipes.dto.RecipeDto;
 import com.amro.recipes.dto.RecipeResponseDto;
 import com.amro.recipes.dto.RecipeSearchDto;
 import com.amro.recipes.exceptions.FoodTypeNotFoundException;
+import com.amro.recipes.exceptions.IngredientNotFoundException;
 import com.amro.recipes.exceptions.RecipeNotFoundException;
 import com.amro.recipes.mapper.RecipeMapper;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Business Layer
@@ -52,23 +52,15 @@ public class RecipeService {
     }
 
     public List<Recipe> search(RecipeSearchDto recipeSearchDto) {
-        //HasIngredient
         List<Recipe> recipes = new ArrayList<>();
-        List<Integer> ingredientIds = new ArrayList<>();
-        for (String ingredient : recipeSearchDto.getHasIngredients()) {
-            Optional<Ingredient> possibleIngredient = ingredientsRepository.findByIngredient(ingredient);
-            possibleIngredient.ifPresent(value -> ingredientIds.add(value.getId()));
-        }
+        //HasIngredient
+        Ingredient hasIngredient = getIngredient(recipeSearchDto.getHasIngredient());
         //HasNotIngredient
-        List<Integer> notIngredientIds = new ArrayList<>();
-        for (String ingredient : recipeSearchDto.getHasNotIngredients()) {
-            Optional<Ingredient> possibleNotIngredient = ingredientsRepository.findByIngredient(ingredient);
-            possibleNotIngredient.ifPresent(value -> notIngredientIds.add(value.getId()));
-        }
+        Ingredient hasNotIngredient = getIngredient(recipeSearchDto.getHasIngredient());
         List<Recipe> recipeList = recipeRepository.findAll();
-        for (Recipe recipe:recipeList) {
+        for (Recipe recipe : recipeList) {
             List<RecipeIngredient> recipeIngredientList = recipeIngredientRepository.findAll(new RecipeSpecification().search(recipe.getId(), recipeSearchDto.getFoodType(), recipeSearchDto.getServe()
-                    , recipeSearchDto.getInstruction(), ingredientIds, notIngredientIds));
+                    , recipeSearchDto.getInstruction(), hasIngredient.getId(), hasNotIngredient.getId()));
             if (!recipeIngredientList.isEmpty()) {
                 recipes.add(recipe);
             }
@@ -133,6 +125,14 @@ public class RecipeService {
         return possibleFoodType.orElseThrow(() -> {
             log.debug("FoodTypeNotFoundException with type {}", foodType);
             return new FoodTypeNotFoundException("FoodType Not Found.");
+        });
+    }
+
+    public Ingredient getIngredient(String ingredient) {
+        Optional<Ingredient> possibleIngredient = ingredientsRepository.findByIngredient(ingredient);
+        return possibleIngredient.orElseThrow(() -> {
+            log.debug("IngredientNotFoundException with ingredient {}", ingredient);
+            return new IngredientNotFoundException("Ingredient Not Found.");
         });
     }
 

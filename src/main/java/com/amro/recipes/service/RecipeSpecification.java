@@ -9,7 +9,8 @@ import java.util.List;
 @Component
 public class RecipeSpecification {
 
-    public Specification<RecipeIngredient> search(Integer recipeId, String foodType, Integer serve, String instruction, List<Integer> hasIngredient, List<Integer> hasNotIngredient) {
+    public Specification<RecipeIngredient> search(Integer recipeId, String foodType, Integer serve, String instruction,
+                                                  Integer hasIngredient, Integer hasNotIngredient) {
         return Specification.where(serve(serve))
                 .and(recipe(recipeId))
                 .and(hasIngredient(hasIngredient))
@@ -27,21 +28,21 @@ public class RecipeSpecification {
         };
     }
 
-    public Specification<RecipeIngredient> hasIngredient(List<Integer> hasIngredients) {
+    public Specification<RecipeIngredient> hasIngredient(Integer hasIngredients) {
         return (root, query, cb) -> {
-            if (hasIngredients == null || hasIngredients.isEmpty()) {
+            if (hasIngredients == null) {
                 return null;
             }
-            return root.get("ingredients").get("id").in(hasIngredients);
+            return cb.equal(root.get("ingredients").get("id"), hasIngredients);
         };
     }
 
-    public Specification<RecipeIngredient> hasNotIngredient(List<Integer> hasNotIngredient) {
+    public Specification<RecipeIngredient> hasNotIngredient(Integer hasNotIngredient) {
         return (root, query, cb) -> {
-            if (hasNotIngredient == null || hasNotIngredient.isEmpty()) {
+            if (hasNotIngredient == null) {
                 return null;
             }
-            return root.get("ingredients").get("id").in(hasNotIngredient).not();
+            return cb.notEqual(root.get("ingredients").get("id"), hasNotIngredient);
         };
     }
 

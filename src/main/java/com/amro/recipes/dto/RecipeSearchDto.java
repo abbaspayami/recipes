@@ -11,9 +11,9 @@ public class RecipeSearchDto {
 
     private Integer serve;
 
-    private List<String> hasIngredients;
+    private String hasIngredient;
 
-    private List<String> hasNotIngredients;
+    private String hasNotIngredient;
 
     private String instruction;
 
