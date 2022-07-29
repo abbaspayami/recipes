@@ -5,24 +5,24 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-    <changeSet id="01">
-        <createTable tableName="food_type"
+    <changeSet id="01" author="Abbas">
+        <createTable tableName="food_Type"
                      remarks="foodType Data">
             <column name="id" type="int" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="name" type="varchar(50)">
+            <column name="type" type="varchar(50)">
                 <constraints nullable="false" unique="true"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet>
+    <changeSet id="02" author="Abbas">
         <comment>Inserting FoodType records</comment>
-        <insert tableName="foodType">
+        <insert tableName="food_Type">
             <column name="id" valueNumeric="1"/>
             <column name="type" value="vegetarian"/>
         </insert>
-        <insert tableName="company">
+        <insert tableName="food_Type">
             <column name="id" valueNumeric="2"/>
             <column name="type" value="vegan"/>
         </insert>

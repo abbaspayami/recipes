@@ -6,8 +6,8 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet>
-        <createTable tableName="recipeIngredient"
+    <changeSet  id="08" author="Abbas">
+        <createTable tableName="recipe_Ingredient"
                      remarks="recipeIngredient Data">
             <column name="id" type="int" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
@@ -15,54 +15,86 @@
         </createTable>
     </changeSet>
 
-    <changeSet>
-        <addForeignKeyConstraint baseTableName="recipe_Ingredient" baseColumnNames="ingredients"
-                                 constraintName="fk_ingredients_id"
-                                 referencedTableName="ingredients" referencedColumnNames="ingredientId"/>
+<!--    <changeSet id="09" author="Abbas">-->
+<!--        <addForeignKeyConstraint baseTableName="recipe_Ingredient" baseColumnNames="ingredients"-->
+<!--                                 constraintName="fk_ingredients_id"-->
+<!--                                 referencedTableName="ingredients" referencedColumnNames="ingredientId"/>-->
 
-        <addForeignKeyConstraint baseTableName="recipe_Ingredient" baseColumnNames="recipes"
-                                 constraintName="fk_recipes_id"
-                                 referencedTableName="recipes" referencedColumnNames="recipeId"/>
-    </changeSet>
-    <changeSet id="05" author="techgeeknext">
+<!--        <addForeignKeyConstraint baseTableName="recipe_Ingredient" baseColumnNames="recipes"-->
+<!--                                 constraintName="fk_recipes_id"-->
+<!--                                 referencedTableName="recipes" referencedColumnNames="recipeId"/>-->
+<!--    </changeSet>-->
+    <changeSet id="10" author="Abbas">
         <comment>Inserting Company records</comment>
-        <insert tableName="company">
+        <insert tableName="recipe_Ingredient">
             <column name="id" valueNumeric="1"/>
-            <column name="name" value="techgeeknext_company_01"/>
-            <column name="employee" valueNumeric="01"/>
+<!--            <column name="ingredients" value="1"/>-->
+<!--            <column name="recipes" valueNumeric="1"/>-->
         </insert>
-        <insert tableName="company">
+        <insert tableName="recipe_Ingredient">
             <column name="id" valueNumeric="2"/>
-            <column name="name" value="techgeeknext_company_02"/>
-            <column name="employee" valueNumeric="02"/>
+<!--            <column name="ingredients" value="2"/>-->
+<!--            <column name="recipes" valueNumeric="1"/>-->
         </insert>
-        <insert tableName="company">
+        <insert tableName="recipe_Ingredient">
             <column name="id" valueNumeric="3"/>
-            <column name="name" value="techgeeknext_company_03"/>
-            <column name="employee" valueNumeric="03"/>
+<!--            <column name="ingredients" value="3"/>-->
+<!--            <column name="recipes" valueNumeric="1"/>-->
         </insert>
-        <insert tableName="company">
+        <insert tableName="recipe_Ingredient">
             <column name="id" valueNumeric="4"/>
-            <column name="name" value="techgeeknext_company_04"/>
-            <column name="employee" valueNumeric="04"/>
+<!--            <column name="ingredients" value="4"/>-->
+<!--            <column name="recipes" valueNumeric="1"/>-->
         </insert>
-        <insert tableName="company">
+        <insert tableName="recipe_Ingredient">
             <column name="id" valueNumeric="5"/>
-            <column name="name" value="techgeeknext_company_05"/>
-            <column name="employee" valueNumeric="05"/>
+<!--            <column name="ingredients" value="5"/>-->
+<!--            <column name="recipes" valueNumeric="1"/>-->
         </insert>
-
-        <!--
-        To update the company table data on precondition
-        if name is techgeeknext_company_03 then update employee to 05
-        <preConditions>
-                <dbms type="mysql"/>
-            </preConditions>
-            <update tableName="company">
-                <column name="employee" value="05"/>
-                <where>name = 'techgeeknext_company_03'</where>
-            </update>
-        !-->
-
+        <insert tableName="recipe_Ingredient">
+            <column name="id" valueNumeric="6"/>
+<!--            <column name="ingredients" value="3"/>-->
+<!--            <column name="recipes" valueNumeric="2"/>-->
+        </insert>
+        <insert tableName="recipe_Ingredient">
+            <column name="id" valueNumeric="7"/>
+<!--            <column name="ingredients" value="4"/>-->
+<!--            <column name="recipes" valueNumeric="2"/>-->
+        </insert>
+        <insert tableName="recipe_Ingredient">
+            <column name="id" valueNumeric="8"/>
+<!--            <column name="ingredients" value="5"/>-->
+<!--            <column name="recipes" valueNumeric="2"/>-->
+        </insert>
+        <insert tableName="recipe_Ingredient">
+            <column name="id" valueNumeric="9"/>
+<!--            <column name="ingredients" value="1"/>-->
+<!--            <column name="recipes" valueNumeric="3"/>-->
+        </insert>
+        <insert tableName="recipe_Ingredient">
+            <column name="id" valueNumeric="10"/>
+<!--            <column name="ingredients" value="2"/>-->
+<!--            <column name="recipes" valueNumeric="3"/>-->
+        </insert>
+        <insert tableName="recipe_Ingredient">
+            <column name="id" valueNumeric="11"/>
+<!--            <column name="ingredients" value="5"/>-->
+<!--            <column name="recipes" valueNumeric="3"/>-->
+        </insert>
+        <insert tableName="recipe_Ingredient">
+            <column name="id" valueNumeric="12"/>
+<!--            <column name="ingredients" value="2"/>-->
+<!--            <column name="recipes" valueNumeric="4"/>-->
+        </insert>
+        <insert tableName="recipe_Ingredient">
+            <column name="id" valueNumeric="13"/>
+<!--            <column name="ingredients" value="4"/>-->
+<!--            <column name="recipes" valueNumeric="4"/>-->
+        </insert>
+        <insert tableName="recipe_Ingredient">
+            <column name="id" valueNumeric="14"/>
+<!--            <column name="ingredients" value="5"/>-->
+<!--            <column name="recipes" valueNumeric="4"/>-->
+        </insert>
     </changeSet>
 </databaseChangeLog>

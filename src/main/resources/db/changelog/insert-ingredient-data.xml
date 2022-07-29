@@ -5,8 +5,8 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-    <changeSet>
-        <createTable tableName="ingredients"
+    <changeSet id="03" author="Abbas">
+        <createTable tableName="ingredient"
                      remarks="Ingredients Data">
             <column name="id" type="int" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
@@ -16,25 +16,25 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="03" author="techgeeknext">
+    <changeSet id="04" author="Abbas">
         <comment>Inserting Ingredient records</comment>
         <insert tableName="ingredient">
             <column name="id" valueNumeric="1"/>
             <column name="ingredient" value="potatoes"/>
         </insert>
-        <insert tableName="company">
+        <insert tableName="ingredient">
             <column name="id" valueNumeric="2"/>
             <column name="ingredient" value="salmon"/>
         </insert>
-        <insert tableName="company">
+        <insert tableName="ingredient">
             <column name="id" valueNumeric="3"/>
             <column name="ingredient" value="tomato"/>
         </insert>
-        <insert tableName="company">
+        <insert tableName="ingredient">
             <column name="id" valueNumeric="4"/>
             <column name="ingredient" value="oil"/>
         </insert>
-        <insert tableName="company">
+        <insert tableName="ingredient">
             <column name="id" valueNumeric="5"/>
             <column name="ingredient" value="olive"/>
         </insert>
