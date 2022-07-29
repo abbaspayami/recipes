@@ -26,13 +26,13 @@ public class RecipeTest {
 
     @Test
     @DisplayName("save and find Recipe Test")
-    void saveAndFindGameTest() {
+    void saveAndFindRecipeTest() {
         Recipe recipe = TestUtils.newRecipe();
 
         Recipe savedRecipe = recipeRepository.save(recipe);
         assertNotNull(savedRecipe);
 
-        // Fetch saved game
+        // Fetch saved recipe
         Optional<Recipe> optionalRecipe = recipeRepository.findById(savedRecipe.getId());
 
         // Validate fetched recipe

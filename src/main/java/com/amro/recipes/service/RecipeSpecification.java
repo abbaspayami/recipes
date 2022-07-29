@@ -9,12 +9,22 @@ import java.util.List;
 @Component
 public class RecipeSpecification {
 
-    public Specification<RecipeIngredient> search(String foodType, Integer serve, String instruction, List<Integer> hasIngredient, List<Integer> hasNotIngredient) {
+    public Specification<RecipeIngredient> search(Integer recipeId, String foodType, Integer serve, String instruction, List<Integer> hasIngredient, List<Integer> hasNotIngredient) {
         return Specification.where(serve(serve))
+                .and(recipe(recipeId))
                 .and(hasIngredient(hasIngredient))
                 .and(hasNotIngredient(hasNotIngredient))
                 .and(instruction(instruction))
                 .and(foodType(foodType));
+    }
+
+    public Specification<RecipeIngredient> recipe(Integer recipeId) {
+        return (root, query, cb) -> {
+            if (recipeId == null) {
+                return null;
+            }
+            return cb.equal(root.get("recipes").get("id"), recipeId);
+        };
     }
 
     public Specification<RecipeIngredient> hasIngredient(List<Integer> hasIngredients) {

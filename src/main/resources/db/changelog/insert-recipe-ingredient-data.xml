@@ -6,7 +6,25 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet id="03" author="techgeeknext">
+    <changeSet>
+        <createTable tableName="recipeIngredient"
+                     remarks="recipeIngredient Data">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet>
+        <addForeignKeyConstraint baseTableName="recipe_Ingredient" baseColumnNames="ingredients"
+                                 constraintName="fk_ingredients_id"
+                                 referencedTableName="ingredients" referencedColumnNames="ingredientId"/>
+
+        <addForeignKeyConstraint baseTableName="recipe_Ingredient" baseColumnNames="recipes"
+                                 constraintName="fk_recipes_id"
+                                 referencedTableName="recipes" referencedColumnNames="recipeId"/>
+    </changeSet>
+    <changeSet id="05" author="techgeeknext">
         <comment>Inserting Company records</comment>
         <insert tableName="company">
             <column name="id" valueNumeric="1"/>

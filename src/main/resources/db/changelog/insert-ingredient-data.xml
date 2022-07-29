@@ -5,46 +5,39 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-
+    <changeSet>
+        <createTable tableName="ingredients"
+                     remarks="Ingredients Data">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="ingredient" type="varchar(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
     <changeSet id="03" author="techgeeknext">
-        <comment>Inserting Company records</comment>
-        <insert tableName="company">
+        <comment>Inserting Ingredient records</comment>
+        <insert tableName="ingredient">
             <column name="id" valueNumeric="1"/>
-            <column name="name" value="techgeeknext_company_01"/>
-            <column name="employee" valueNumeric="01"/>
+            <column name="ingredient" value="potatoes"/>
         </insert>
         <insert tableName="company">
             <column name="id" valueNumeric="2"/>
-            <column name="name" value="techgeeknext_company_02"/>
-            <column name="employee" valueNumeric="02"/>
+            <column name="ingredient" value="salmon"/>
         </insert>
         <insert tableName="company">
             <column name="id" valueNumeric="3"/>
-            <column name="name" value="techgeeknext_company_03"/>
-            <column name="employee" valueNumeric="03"/>
+            <column name="ingredient" value="tomato"/>
         </insert>
         <insert tableName="company">
             <column name="id" valueNumeric="4"/>
-            <column name="name" value="techgeeknext_company_04"/>
-            <column name="employee" valueNumeric="04"/>
+            <column name="ingredient" value="oil"/>
         </insert>
         <insert tableName="company">
             <column name="id" valueNumeric="5"/>
-            <column name="name" value="techgeeknext_company_05"/>
-            <column name="employee" valueNumeric="05"/>
+            <column name="ingredient" value="olive"/>
         </insert>
-
-        <!--
-        To update the company table data on precondition
-        if name is techgeeknext_company_03 then update employee to 05
-        <preConditions>
-                <dbms type="mysql"/>
-            </preConditions>
-            <update tableName="company">
-                <column name="employee" value="05"/>
-                <where>name = 'techgeeknext_company_03'</where>
-            </update>
-        !-->
 
     </changeSet>
 </databaseChangeLog>

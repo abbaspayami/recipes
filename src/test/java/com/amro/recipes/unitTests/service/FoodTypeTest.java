@@ -50,10 +50,10 @@ public class FoodTypeTest {
 
 
     /**
-     * checking non existing game
+     * checking non existing recipe
      */
     @Test
-    void loadNonExistingGame() {
+    void loadNonExistingRecipe() {
         Exception exception = assertThrows(FoodTypeAlreadyExistException.class, () -> {
             foodTypeService.checkingFoodTypeIsExist(TestUtils.EXISTING_FOOD_TYPE);
         });

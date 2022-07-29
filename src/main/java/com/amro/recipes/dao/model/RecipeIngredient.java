@@ -1,6 +1,5 @@
 package com.amro.recipes.dao.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,10 +13,8 @@ public class RecipeIngredient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
-
-//    private Float amount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ingredientId")

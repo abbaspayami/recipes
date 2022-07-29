@@ -53,6 +53,7 @@ public class RecipeService {
 
     public List<Recipe> search(RecipeSearchDto recipeSearchDto) {
         //HasIngredient
+        List<Recipe> recipes = new ArrayList<>();
         List<Integer> ingredientIds = new ArrayList<>();
         for (String ingredient : recipeSearchDto.getHasIngredients()) {
             Optional<Ingredient> possibleIngredient = ingredientsRepository.findByIngredient(ingredient);
@@ -64,15 +65,15 @@ public class RecipeService {
             Optional<Ingredient> possibleNotIngredient = ingredientsRepository.findByIngredient(ingredient);
             possibleNotIngredient.ifPresent(value -> notIngredientIds.add(value.getId()));
         }
-        List<RecipeIngredient> recipeIngredientList = recipeIngredientRepository.findAll(new RecipeSpecification().search(recipeSearchDto.getFoodType(), recipeSearchDto.getServe()
-                , recipeSearchDto.getInstruction(), ingredientIds, notIngredientIds));
-//        List<Recipe> recipes = new ArrayList<>();
-        return recipeIngredientList.stream().map(RecipeIngredient::getRecipes).distinct().collect(Collectors.toList());
-//        for (Recipe recipe : recipeIngredientList.stream().map(RecipeIngredient::getRecipes).collect(Collectors.toList())) {
-//            Optional<Recipe> possibleRecipe = recipeRepository.findById(recipe.getId());
-//            possibleRecipe.ifPresent(recipes::add);
-//        }
-//        return recipes;
+        List<Recipe> recipeList = recipeRepository.findAll();
+        for (Recipe recipe:recipeList) {
+            List<RecipeIngredient> recipeIngredientList = recipeIngredientRepository.findAll(new RecipeSpecification().search(recipe.getId(), recipeSearchDto.getFoodType(), recipeSearchDto.getServe()
+                    , recipeSearchDto.getInstruction(), ingredientIds, notIngredientIds));
+            if (!recipeIngredientList.isEmpty()) {
+                recipes.add(recipe);
+            }
+        }
+        return recipes;
     }
 
     public List<RecipeResponseDto> getAll() {
@@ -82,9 +83,9 @@ public class RecipeService {
     @Transactional
     public Recipe update(Integer id, RecipeDto recipeDto) {
         Recipe recipe = getRecipe(id);
-        recipe = recipeMapper.recipeDtoToRecipe(recipeDto);
         recipe.setId(id);
         recipe.setRfFoodType(getFoodType(recipeDto.getFoodType()));
+        recipe = recipeMapper.recipeDtoToRecipe(recipeDto);
         recipeRepository.save(recipe);
 
         List<RecipeIngredient> recipeIngredients = recipeIngredientRepository.findByRecipes_Id(recipe.getId());

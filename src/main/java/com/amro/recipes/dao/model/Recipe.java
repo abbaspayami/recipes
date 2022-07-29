@@ -1,13 +1,11 @@
 package com.amro.recipes.dao.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 @NoArgsConstructor
@@ -18,17 +16,16 @@ public class Recipe implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "tile", length = 50)
+    @Column(name = "title", length = 50, nullable = false, unique = true)
     private String title;
 
     @Column(name = "serve", nullable = false)
     private Integer serve;
 
-    // TODO: Full text search index should be created for this field (Look at MySQL and Hibernate docs)
-    @Column(name = "instructions")
+    @Column(name = "instructions", length = 300, nullable = false)
     private String instructions;
 
     @ManyToOne(fetch = FetchType.LAZY)

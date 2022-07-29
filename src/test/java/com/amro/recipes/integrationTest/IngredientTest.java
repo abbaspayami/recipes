@@ -34,7 +34,7 @@ public class IngredientTest {
     private Ingredient ingredient;
 
     /**
-     * Create new game before each test
+     * Create new recipe before each test
      *
      * @throws Exception
      */

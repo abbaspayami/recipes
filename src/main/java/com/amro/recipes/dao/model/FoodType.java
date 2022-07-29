@@ -16,10 +16,10 @@ public class FoodType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "type")
+    @Column(name = "type", length = 50, nullable = false, unique = true)
     private String type;
 
 }

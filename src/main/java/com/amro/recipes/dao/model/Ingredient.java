@@ -15,10 +15,10 @@ public class Ingredient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "ingredient", unique = true)
+    @Column(name = "ingredient", length = 50, nullable = false, unique = true)
     private String ingredient;
 
 }
