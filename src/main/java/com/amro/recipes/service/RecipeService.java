@@ -56,7 +56,7 @@ public class RecipeService {
         //HasIngredient
         Ingredient hasIngredient = getIngredient(recipeSearchDto.getHasIngredient());
         //HasNotIngredient
-        Ingredient hasNotIngredient = getIngredient(recipeSearchDto.getHasIngredient());
+        Ingredient hasNotIngredient = getIngredient(recipeSearchDto.getHasNotIngredient());
         List<Recipe> recipeList = recipeRepository.findAll();
         for (Recipe recipe : recipeList) {
             List<RecipeIngredient> recipeIngredientList = recipeIngredientRepository.findAll(new RecipeSpecification().search(recipe.getId(), recipeSearchDto.getFoodType(), recipeSearchDto.getServe()
