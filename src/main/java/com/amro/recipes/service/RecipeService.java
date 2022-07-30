@@ -80,7 +80,7 @@ public class RecipeService {
         recipe = recipeMapper.recipeDtoToRecipe(recipeDto);
         recipeRepository.save(recipe);
 
-        List<RecipeIngredient> recipeIngredients = recipeIngredientRepository.findByRecipes_Id(recipe.getId());
+        List<RecipeIngredient> recipeIngredients = recipeIngredientRepository.findByRfRecipes_Id(recipe.getId());
         recipeIngredientRepository.deleteAll(recipeIngredients);
 
         saveRecipeIngredients(recipeDto, recipe);
@@ -102,10 +102,10 @@ public class RecipeService {
     private void saveRecipeIngredients(RecipeDto recipeDto, Recipe recipe) {
         for (Integer ingredientId : recipeDto.getIngredients()) {
             RecipeIngredient recipeIngredient = new RecipeIngredient();
-            recipeIngredient.setRecipes(recipe);
+            recipeIngredient.setRfRecipes(recipe);
             Optional<Ingredient> possibleIngredient = ingredientsRepository.findById(ingredientId);
             if (possibleIngredient.isPresent()) {
-                recipeIngredient.setIngredients(possibleIngredient.get());
+                recipeIngredient.setRfIngredients(possibleIngredient.get());
                 recipeIngredientRepository.save(recipeIngredient);
             }
         }

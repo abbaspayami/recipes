@@ -17,11 +17,11 @@ public class RecipeIngredient {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ingredientId")
-    private Ingredient ingredients;
+    @JoinColumn(name = "fk_ingredient_id", referencedColumnName = "id")
+    private Ingredient rfIngredients;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "recipeId")
-    private Recipe recipes;
+    @JoinColumn(name = "fk_recipe_id", referencedColumnName = "id")
+    private Recipe rfRecipes;
 
 }

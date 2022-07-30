@@ -65,7 +65,7 @@ public class IngredientService {
         log.debug("Delete Ingredient in id {}", id);
         getIngredient(id);
         ingredientsRepository.deleteById(id);
-        recipeIngredientRepository.deleteByIngredients_Id(id);
+        recipeIngredientRepository.deleteByRfIngredients_Id(id);
     }
 
     public Ingredient getIngredient(Integer id) {
