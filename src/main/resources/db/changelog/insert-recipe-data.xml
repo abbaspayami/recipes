@@ -9,7 +9,7 @@
     <changeSet id="05" author="Abbas">
         <createTable tableName="recipe"
                      remarks="Recipe Data">
-            <column name="id" type="int" autoIncrement="true">
+            <column name="id" type="integer" autoIncrement="true">
                 <constraints nullable="false" unique="true" primaryKey="true"/>
             </column>
             <column name="title" type="varchar(50)">
@@ -29,7 +29,7 @@
 
     <changeSet id="06" author="Abbas">
         <addForeignKeyConstraint baseTableName="recipe" baseColumnNames="fk_food_type_id"
-                                 constraintName="fk_foodType1_id"
+                                 constraintName="fk_foodType_id"
                                  referencedTableName="Food_Type" referencedColumnNames="id"/>
     </changeSet>
 

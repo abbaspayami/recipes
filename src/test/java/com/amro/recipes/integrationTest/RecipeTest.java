@@ -2,10 +2,12 @@ package com.amro.recipes.integrationTest;
 
 import com.amro.recipes.common.TestUtils;
 import com.amro.recipes.dao.model.Recipe;
+import com.amro.recipes.dao.repository.FoodTypeRepository;
 import com.amro.recipes.dto.RecipeDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -30,8 +32,12 @@ public class RecipeTest {
 
     private Recipe recipe;
 
+    @Autowired
+    private FoodTypeRepository foodTypeRepository;
+
     @Test
     void createNewRecipe() throws Exception {
+        foodTypeRepository.save(TestUtils.newFoodType());
         MvcResult mvcResult = mockMvc.perform(post("http://localhost:8080/api/v1/recipes")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(RecipeTest.asJsonString(TestUtils.recipeDto())))

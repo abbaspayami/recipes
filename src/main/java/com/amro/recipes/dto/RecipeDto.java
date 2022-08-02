@@ -22,7 +22,7 @@ public class RecipeDto {
     private String instructions;
 
     @NotNull(message = "is Mandatory")
-    @ApiModelProperty( example = "1,2,3", required = true)
+//    @ApiModelProperty( example = "1,2,3", required = true)
     private List<Integer> ingredients;
 
     @NotNull(message = "is Mandatory")

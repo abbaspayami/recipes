@@ -1,19 +1,22 @@
 package com.amro.recipes.dao.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
-@Entity
-@Table(name = "recipe_Ingredient")
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @NoArgsConstructor
 @Data
-public class RecipeIngredient {
+@Entity
+@Table(name = "recipe_Ingredient")
+public class RecipeIngredient implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false, unique = true)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -25,3 +28,5 @@ public class RecipeIngredient {
     private Recipe rfRecipes;
 
 }
+
+

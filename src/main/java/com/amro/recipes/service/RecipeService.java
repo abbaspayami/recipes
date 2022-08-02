@@ -40,7 +40,7 @@ public class RecipeService {
     private final RecipeIngredientRepository recipeIngredientRepository;
     private final RecipeMapper recipeMapper;
 
-    @Transactional
+//    @Transactional
     public Recipe add(RecipeDto recipeDto) {
         log.info("adding Recipe...");
         Recipe recipe = recipeMapper.recipeDtoToRecipe(recipeDto);
