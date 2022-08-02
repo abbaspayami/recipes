@@ -12,95 +12,96 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="rfIngredients" type="int">
+            <column name="fk_ingredient_id" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="rfRecipes" type="int">
+            <column name="fk_recipe_id" type="int">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
 
     <changeSet id="09" author="Abbas">
-        <addForeignKeyConstraint baseTableName="recipe_Ingredient" baseColumnNames="rfIngredients"
+        <addForeignKeyConstraint baseTableName="recipe_Ingredient" baseColumnNames="fk_ingredient_id"
                                  constraintName="fk_ingredient_id"
                                  referencedTableName="recipe" referencedColumnNames="id"/>
 
-        <addForeignKeyConstraint baseTableName="recipe_Ingredient" baseColumnNames="rfRecipes"
+        <addForeignKeyConstraint baseTableName="recipe_Ingredient" baseColumnNames="fk_recipe_id"
                                  constraintName="fk_recipe_id"
                                  referencedTableName="ingredient" referencedColumnNames="id"/>
     </changeSet>
+
     <changeSet id="10" author="Abbas">
         <comment>Inserting Company records</comment>
         <insert tableName="recipe_Ingredient">
             <column name="id" valueNumeric="1"/>
-            <column name="rfIngredients" valueNumeric="1"/>
-            <column name="rfRecipes" valueNumeric="1"/>
+            <column name="fk_ingredient_id" valueNumeric="1"/>
+            <column name="fk_recipe_id" valueNumeric="1"/>
         </insert>
         <insert tableName="recipe_Ingredient">
             <column name="id" valueNumeric="2"/>
-            <column name="rfIngredients" valueNumeric="2"/>
-            <column name="rfRecipes" valueNumeric="1"/>
+            <column name="fk_ingredient_id" valueNumeric="2"/>
+            <column name="fk_recipe_id" valueNumeric="1"/>
         </insert>
         <insert tableName="recipe_Ingredient">
             <column name="id" valueNumeric="3"/>
-            <column name="rfIngredients" valueNumeric="3"/>
-            <column name="rfRecipes" valueNumeric="1"/>
+            <column name="fk_ingredient_id" valueNumeric="3"/>
+            <column name="fk_recipe_id" valueNumeric="1"/>
         </insert>
         <insert tableName="recipe_Ingredient">
             <column name="id" valueNumeric="4"/>
-            <column name="rfIngredients" valueNumeric="4"/>
-            <column name="rfRecipes" valueNumeric="1"/>
+            <column name="fk_ingredient_id" valueNumeric="4"/>
+            <column name="fk_recipe_id" valueNumeric="1"/>
         </insert>
         <insert tableName="recipe_Ingredient">
             <column name="id" valueNumeric="5"/>
-            <column name="rfIngredients" valueNumeric="5"/>
-            <column name="rfRecipes" valueNumeric="1"/>
+            <column name="fk_ingredient_id" valueNumeric="5"/>
+            <column name="fk_recipe_id" valueNumeric="1"/>
         </insert>
         <insert tableName="recipe_Ingredient">
             <column name="id" valueNumeric="6"/>
-            <column name="rfIngredients" valueNumeric="3"/>
-            <column name="rfRecipes" valueNumeric="2"/>
+            <column name="fk_ingredient_id" valueNumeric="3"/>
+            <column name="fk_recipe_id" valueNumeric="2"/>
         </insert>
         <insert tableName="recipe_Ingredient">
             <column name="id" valueNumeric="7"/>
-            <column name="rfIngredients" valueNumeric="4"/>
-            <column name="rfRecipes" valueNumeric="2"/>
+            <column name="fk_ingredient_id" valueNumeric="4"/>
+            <column name="fk_recipe_id" valueNumeric="2"/>
         </insert>
         <insert tableName="recipe_Ingredient">
             <column name="id" valueNumeric="8"/>
-            <column name="rfIngredients" valueNumeric="5"/>
-            <column name="rfRecipes" valueNumeric="2"/>
+            <column name="fk_ingredient_id" valueNumeric="5"/>
+            <column name="fk_recipe_id" valueNumeric="2"/>
         </insert>
         <insert tableName="recipe_Ingredient">
             <column name="id" valueNumeric="9"/>
-            <column name="rfIngredients" valueNumeric="1"/>
-            <column name="rfRecipes" valueNumeric="3"/>
+            <column name="fk_ingredient_id" valueNumeric="1"/>
+            <column name="fk_recipe_id" valueNumeric="3"/>
         </insert>
         <insert tableName="recipe_Ingredient">
             <column name="id" valueNumeric="10"/>
-            <column name="rfIngredients" valueNumeric="2"/>
-            <column name="rfRecipes" valueNumeric="3"/>
+            <column name="fk_ingredient_id" valueNumeric="2"/>
+            <column name="fk_recipe_id" valueNumeric="3"/>
         </insert>
         <insert tableName="recipe_Ingredient">
             <column name="id" valueNumeric="11"/>
-            <column name="rfIngredients" valueNumeric="5"/>
-            <column name="rfRecipes" valueNumeric="3"/>
+            <column name="fk_ingredient_id" valueNumeric="5"/>
+            <column name="fk_recipe_id" valueNumeric="3"/>
         </insert>
         <insert tableName="recipe_Ingredient">
             <column name="id" valueNumeric="12"/>
-            <column name="rfIngredients" valueNumeric="2"/>
-            <column name="rfRecipes" valueNumeric="4"/>
+            <column name="fk_ingredient_id" valueNumeric="2"/>
+            <column name="fk_recipe_id" valueNumeric="4"/>
         </insert>
         <insert tableName="recipe_Ingredient">
             <column name="id" valueNumeric="13"/>
-            <column name="rfIngredients" valueNumeric="4"/>
-            <column name="rfRecipes" valueNumeric="4"/>
+            <column name="fk_ingredient_id" valueNumeric="4"/>
+            <column name="fk_recipe_id" valueNumeric="4"/>
         </insert>
         <insert tableName="recipe_Ingredient">
             <column name="id" valueNumeric="14"/>
-            <column name="rfIngredients" valueNumeric="5"/>
-            <column name="rfRecipes" valueNumeric="4"/>
+            <column name="fk_ingredient_id" valueNumeric="5"/>
+            <column name="fk_recipe_id" valueNumeric="4"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

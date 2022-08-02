@@ -4,7 +4,6 @@ import com.amro.recipes.common.TestUtils;
 import com.amro.recipes.dao.model.Recipe;
 import com.amro.recipes.dto.RecipeDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -32,7 +31,7 @@ public class RecipeTest {
     private Recipe recipe;
 
     @Test
-    void createNewIngredient() throws Exception {
+    void createNewRecipe() throws Exception {
         MvcResult mvcResult = mockMvc.perform(post("http://localhost:8080/api/v1/recipes")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(RecipeTest.asJsonString(TestUtils.recipeDto())))

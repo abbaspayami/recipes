@@ -3,7 +3,6 @@ package com.amro.recipes.dto;
 import com.amro.recipes.dao.model.FoodType;
 import lombok.Data;
 
-
 @Data
 public class RecipeResponseDto {
 

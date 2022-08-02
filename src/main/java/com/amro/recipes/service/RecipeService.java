@@ -44,8 +44,7 @@ public class RecipeService {
     public Recipe add(RecipeDto recipeDto) {
         log.info("adding Recipe...");
         Recipe recipe = recipeMapper.recipeDtoToRecipe(recipeDto);
-
-
+        recipe.setRfFoodType(getFoodType(recipeDto.getFoodType()));
         Recipe recipeSaved = recipeRepository.save(recipe);
         saveRecipeIngredients(recipeDto, recipeSaved);
         return recipeSaved;

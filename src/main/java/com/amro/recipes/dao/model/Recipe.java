@@ -16,10 +16,10 @@ public class Recipe implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false, unique = true)
     private Integer id;
 
-    @Column(name = "title", length = 50, nullable = false, unique = true)
+    @Column(name = "title", length = 50)
     private String title;
 
     @Column(name = "serve", nullable = false)
@@ -29,7 +29,7 @@ public class Recipe implements Serializable {
     private String instructions;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_foodType_id", referencedColumnName = "id")
+    @JoinColumn(name = "fk_food_type_id", referencedColumnName = "id")
     private FoodType rfFoodType;
 
 }
