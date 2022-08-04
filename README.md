@@ -44,7 +44,7 @@ you can call five Rest Api for shopping Cart :
 * [Maven]
 * [Docker]
 * [Lombok]
-* [Postgres]
+* [MySql]
 * [Swagger]
 * [JUnit 5]
 * [Mockito]
