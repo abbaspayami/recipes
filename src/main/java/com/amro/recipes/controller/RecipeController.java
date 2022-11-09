@@ -3,7 +3,7 @@ package com.amro.recipes.controller;
 import com.amro.recipes.dto.RecipeDto;
 import com.amro.recipes.dto.RecipeSearchDto;
 import com.amro.recipes.service.RecipeService;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,7 @@ public class RecipeController {
     /**
      * adding new recipe
      */
-    @ApiOperation(value = "Adding New recipe")
+    @Operation(description = "Adding New recipe")
     @PostMapping
     public ResponseEntity<?> add(@RequestBody
                     @Valid RecipeDto recipeDto) {
@@ -34,7 +34,7 @@ public class RecipeController {
     /**
      * search specific recipe
      */
-    @ApiOperation(value = "searching recipe")
+    @Operation(description = "searching recipe")
     @GetMapping(value = "/search")
     public ResponseEntity<?> search(
             RecipeSearchDto recipeSearchDto) {
@@ -47,7 +47,7 @@ public class RecipeController {
      *
      * @return all recipes
      */
-    @ApiOperation(value = "Find all recipes")
+    @Operation(description = "Find all recipes")
     @GetMapping
     public ResponseEntity<?> getAll() {
         log.debug("Request get all ingredient...");

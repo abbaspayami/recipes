@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Entity
-@Table(name = "food_Type")
+@Table(name = "food_type")
 @NoArgsConstructor
 @Data
 public class FoodType {

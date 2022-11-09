@@ -1,26 +1,24 @@
 package com.amro.recipes.dto;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 public class RecipeSearchDto {
 
-    @ApiModelProperty( example = "vegetarian")
+    @Schema( example = "vegetarian")
     private String foodType;
 
-    @ApiModelProperty( example = "4")
+    @Schema( example = "4")
     private Integer serve;
 
-    @ApiModelProperty( example = "potatoes")
+    @Schema( example = "potatoes")
     private String hasIngredient;
 
-    @ApiModelProperty( example = "salmon")
+    @Schema( example = "salmon")
     private String hasNotIngredient;
 
-    @ApiModelProperty( example = "oven")
+    @Schema( example = "oven")
     private String instruction;
 
 }

@@ -30,7 +30,7 @@
     <changeSet id="06" author="Abbas">
         <addForeignKeyConstraint baseTableName="recipe" baseColumnNames="fk_food_type_id"
                                  constraintName="fk_foodType_id"
-                                 referencedTableName="Food_Type" referencedColumnNames="id"/>
+                                 referencedTableName="food_type" referencedColumnNames="id"/>
     </changeSet>
 
     <changeSet id="07" author="Abbas">

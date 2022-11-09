@@ -2,7 +2,7 @@ package com.amro.recipes.controller;
 
 import com.amro.recipes.dto.FoodTypeDto;
 import com.amro.recipes.service.FoodTypeService;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -25,7 +25,7 @@ public class FoodTypeController {
      * adding new food category
      *
      */
-    @ApiOperation(value = "Adding New food category")
+    @Operation(description = "Adding New food category")
     @PostMapping
     public ResponseEntity<?> add(@RequestBody
                     @Valid FoodTypeDto foodTypeDto) {
@@ -38,7 +38,7 @@ public class FoodTypeController {
      *
      * @return all food categories
      */
-    @ApiOperation(value = "Find all food categories")
+    @Operation(description = "Find all food categories")
     @GetMapping(value = "/all")
     public ResponseEntity<?> getAll() {
         log.debug("Request get all food categories...");

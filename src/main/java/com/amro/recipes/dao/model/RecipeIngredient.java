@@ -11,7 +11,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "recipe_Ingredient")
+@Table(name = "recipe_ingredient")
 public class RecipeIngredient implements Serializable {
 
     @Id

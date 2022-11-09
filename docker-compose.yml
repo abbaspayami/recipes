@@ -11,18 +11,27 @@ services:
     ports:
       - 8080:8080
     depends_on:
-      - db1
+      - postgres
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://db1:33061/recipe
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/recipe
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
 
-  db1:
-    image: mysql
-    container_name: db1
+  postgres:
+    image: postgres:13
     environment:
-      - MYSQL_ROOT_PASSWORD=1234
-      - MYSQL_DATABASE=recipe
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=root
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=recipe
     ports:
-      - 33061:3306
+      - "5432:5432"
+    networks:
+      - default
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    logging:
+      driver: none
 

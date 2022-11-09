@@ -1,6 +1,6 @@
 package com.amro.recipes.dto;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 public class FoodTypeDto {
 
     @NotNull(message = "is Mandatory")
-    @ApiModelProperty( example = "vegetarian", required = true)
+    @Schema( example = "vegetarian", required = true)
     private String foodType;
 
 }
