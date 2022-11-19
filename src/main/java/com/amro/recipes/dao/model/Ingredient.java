@@ -16,9 +16,13 @@ public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "ingredient", length = 50, nullable = false, unique = true)
     private String ingredient;
+
+//    @Enumerated(EnumType.STRING)
+//    @Column(name = "unit", length = 50)
+//    private IngredientUnit unit;
 
 }

@@ -44,7 +44,7 @@ public class RecipeService {
     public Recipe add(RecipeDto recipeDto) {
         log.info("adding Recipe...");
         Recipe recipe = recipeMapper.recipeDtoToRecipe(recipeDto);
-        recipe.setRfFoodType(getFoodType(recipeDto.getFoodType()));
+        recipe.setFoodTypeId(getFoodType(recipeDto.getFoodType()));
         Recipe recipeSaved = recipeRepository.save(recipe);
         saveRecipeIngredients(recipeDto, recipeSaved);
         return recipeSaved;
@@ -72,10 +72,10 @@ public class RecipeService {
     }
 
     @Transactional
-    public Recipe update(Integer id, RecipeDto recipeDto) {
+    public Recipe update(Long id, RecipeDto recipeDto) {
         Recipe recipe = getRecipe(id);
         recipe.setId(id);
-        recipe.setRfFoodType(getFoodType(recipeDto.getFoodType()));
+        recipe.setFoodTypeId(getFoodType(recipeDto.getFoodType()));
         recipe = recipeMapper.recipeDtoToRecipe(recipeDto);
         recipeRepository.save(recipe);
 
@@ -92,14 +92,14 @@ public class RecipeService {
      *
      * @param id recipe Id
      */
-    public void removeRecipe(Integer id) {
+    public void removeRecipe(Long id) {
         log.debug("Delete Recipe in id {}", id);
         getRecipe(id);
         recipeRepository.deleteById(id);
     }
 
     private void saveRecipeIngredients(RecipeDto recipeDto, Recipe recipe) {
-        for (Integer ingredientId : recipeDto.getIngredients()) {
+        for (Long ingredientId : recipeDto.getIngredients()) {
             RecipeIngredient recipeIngredient = new RecipeIngredient();
             recipeIngredient.setRfRecipes(recipe);
             Optional<Ingredient> possibleIngredient = ingredientsRepository.findById(ingredientId);
@@ -110,7 +110,7 @@ public class RecipeService {
         }
     }
 
-    public Recipe getRecipe(Integer id) {
+    public Recipe getRecipe(Long id) {
         log.debug("Get Recipe with id {}", id);
         Optional<Recipe> possibleRecipe = recipeRepository.findById(id);
         return possibleRecipe.orElseThrow(() -> {

@@ -17,19 +17,19 @@ public class Recipe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
-    private Integer id;
+    private Long id;
 
     @Column(name = "title", length = 50)
     private String title;
 
-    @Column(name = "serve", nullable = false)
-    private Integer serve;
-
     @Column(name = "instructions", length = 300, nullable = false)
     private String instructions;
 
+//    @Column(name = "default_serving_number")
+//    private String defaultServingNumber;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_food_type_id", referencedColumnName = "id")
-    private FoodType rfFoodType;
+    private FoodType foodTypeId;
 
 }

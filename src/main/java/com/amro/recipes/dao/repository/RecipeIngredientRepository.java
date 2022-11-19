@@ -9,10 +9,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RecipeIngredientRepository extends JpaRepository<RecipeIngredient, Integer>, JpaSpecificationExecutor<RecipeIngredient> {
+public interface RecipeIngredientRepository extends JpaRepository<RecipeIngredient, Long>, JpaSpecificationExecutor<RecipeIngredient> {
 
-    List<RecipeIngredient> findByRfRecipes_Id(Integer recipeId);
+    List<RecipeIngredient> findByRfRecipes_Id(Long recipeId);
 
-    void deleteByRfIngredients_Id(Integer id);
+    void deleteByRfIngredients_Id(Long id);
 
 }

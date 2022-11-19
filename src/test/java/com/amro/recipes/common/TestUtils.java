@@ -12,10 +12,10 @@ import java.util.List;
 
 public class TestUtils {
 
-    public static final int EXISTING_RECIPE_ID = 1;
-    public static final int NON_EXISTING_RECIPE_ID = 2;
-    public static final int EXISTING_INGREDIENT_ID = 1;
-    public static final int NON_EXISTING_INGREDIENT_ID = 2;
+    public static final long EXISTING_RECIPE_ID = 1;
+    public static final long NON_EXISTING_RECIPE_ID = 2;
+    public static final long EXISTING_INGREDIENT_ID = 1;
+    public static final long NON_EXISTING_INGREDIENT_ID = 2;
     public static final String EXISTING_FOOD_TYPE = "vegetarian";
     public static final String NON_EXISTING_FOOD_TYPE = "noting";
 
@@ -28,10 +28,10 @@ public class TestUtils {
 
     public static Recipe newRecipe() {
         Recipe recipe= new Recipe();
-        recipe.setId(1);
+        recipe.setId(1l);
         recipe.setInstructions("test, test");
         recipe.setTitle("pizza");
-        recipe.setServe(2);
+//        recipe.setServe(2);
         FoodType foodType =new FoodType();
         foodType.setType("vegetarian");
         recipe.setRfFoodType(foodType);
@@ -56,10 +56,10 @@ public class TestUtils {
         recipeDto.setInstructions("test, test");
         recipeDto.setServe(2);
         recipeDto.setTitle("pizza");
-        List<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
+        List<Long> list = new ArrayList<>();
+        list.add(1L);
+        list.add(2L);
+        list.add(3L);
         recipeDto.setIngredients(list);
         return recipeDto;
     }
@@ -77,7 +77,7 @@ public class TestUtils {
 
     public static FoodType newFoodType() {
         FoodType foodType= new FoodType();
-        foodType.setId(1);
+        foodType.setId(1L);
         foodType.setType("vegetarian");
         return foodType;
     }

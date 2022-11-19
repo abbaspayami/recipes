@@ -23,7 +23,7 @@ public class RecipeDto {
 
     @NotNull(message = "is Mandatory")
 //    @Schema( example = "1,2,3", required = true)
-    private List<Integer> ingredients;
+    private List<Long> ingredients;
 
     @NotNull(message = "is Mandatory")
     @Schema( example = "vegetarian", required = true)

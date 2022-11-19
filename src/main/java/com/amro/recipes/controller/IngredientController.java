@@ -52,7 +52,7 @@ public class IngredientController {
      * @return
      */
     @PutMapping(value = "/update/{id}")
-    public ResponseEntity<?> update(@PathVariable final int id, @RequestBody IngredientDto ingredientDto) {
+    public ResponseEntity<?> update(@PathVariable final long id, @RequestBody IngredientDto ingredientDto) {
         log.debug("Request Update for ingredient {}", id);
         return new ResponseEntity<>(ingredientService.update(id, ingredientDto), HttpStatus.OK);
     }
@@ -62,7 +62,7 @@ public class IngredientController {
      * @param id recipeId
      */
     @DeleteMapping(value = "/remove/{id}")
-    public void removeProduct(@PathVariable final int id) {
+    public void removeProduct(@PathVariable final long id) {
         log.debug("Request remove for recipeId {}", id);
         ingredientService.removeIngredient(id);
         ResponseEntity.noContent();

@@ -50,7 +50,7 @@ public class IngredientService {
         return ingredientSaved;
     }
 
-    public Ingredient update(Integer id, IngredientDto ingredientDto) {
+    public Ingredient update(Long id, IngredientDto ingredientDto) {
         Ingredient ingredient = getIngredient(id);
         ingredient.setIngredient(ingredientDto.getIngredient());
         return ingredientsRepository.save(ingredient);
@@ -61,14 +61,14 @@ public class IngredientService {
      *
      * @param id Ingredient Id
      */
-    public void removeIngredient(Integer id) {
+    public void removeIngredient(Long id) {
         log.debug("Delete Ingredient in id {}", id);
         getIngredient(id);
         ingredientsRepository.deleteById(id);
         recipeIngredientRepository.deleteByRfIngredients_Id(id);
     }
 
-    public Ingredient getIngredient(Integer id) {
+    public Ingredient getIngredient(Long id) {
         log.debug("Get Recipe with id {}", id);
         Optional<Ingredient> possibleIngredient = ingredientsRepository.findById(id);
         return possibleIngredient.orElseThrow(() -> {

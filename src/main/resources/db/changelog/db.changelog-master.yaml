@@ -1,9 +1,9 @@
 databaseChangeLog:
   - include:
-      file: db/changelog/insert-food-type-data.xml
+      file: db/changelog/insert-food-type-data.sql
   - include:
-      file: db/changelog/insert-ingredient-data.xml
+      file: db/changelog/insert-ingredient-data.sql
   - include:
-      file: db/changelog/insert-recipe-data.xml
+      file: db/changelog/insert-recipe-data.sql
   - include:
-      file: db/changelog/insert-recipe-ingredient-data.xml
+      file: db/changelog/insert-recipe-ingredient-data.sql

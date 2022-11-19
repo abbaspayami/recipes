@@ -9,8 +9,8 @@ import java.util.List;
 @Component
 public class RecipeSpecification {
 
-    public Specification<RecipeIngredient> search(Integer recipeId, String foodType, Integer serve, String instruction,
-                                                  Integer hasIngredient, Integer hasNotIngredient) {
+    public Specification<RecipeIngredient> search(Long recipeId, String foodType, Integer serve, String instruction,
+                                                  Long hasIngredient, Long hasNotIngredient) {
         return Specification.where(serve(serve))
                 .and(recipe(recipeId))
                 .and(hasIngredient(hasIngredient))
@@ -19,7 +19,7 @@ public class RecipeSpecification {
                 .and(foodType(foodType));
     }
 
-    public Specification<RecipeIngredient> recipe(Integer recipeId) {
+    public Specification<RecipeIngredient> recipe(Long recipeId) {
         return (root, query, cb) -> {
             if (recipeId == null) {
                 return null;
@@ -28,7 +28,7 @@ public class RecipeSpecification {
         };
     }
 
-    public Specification<RecipeIngredient> hasIngredient(Integer hasIngredients) {
+    public Specification<RecipeIngredient> hasIngredient(Long hasIngredients) {
         return (root, query, cb) -> {
             if (hasIngredients == null) {
                 return null;
@@ -37,7 +37,7 @@ public class RecipeSpecification {
         };
     }
 
-    public Specification<RecipeIngredient> hasNotIngredient(Integer hasNotIngredient) {
+    public Specification<RecipeIngredient> hasNotIngredient(Long hasNotIngredient) {
         return (root, query, cb) -> {
             if (hasNotIngredient == null) {
                 return null;
