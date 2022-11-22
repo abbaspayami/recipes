@@ -11,3 +11,6 @@ insert into food_type(type) values ('vegetarian');
 insert into food_type(type) values ('vegan');
 insert into food_type(type) values ('test1');
 insert into food_type(type) values ('test2');
+
+--changeset nvoxland:9
+ALTER TABLE food_type ADD test VARCHAR(50);
