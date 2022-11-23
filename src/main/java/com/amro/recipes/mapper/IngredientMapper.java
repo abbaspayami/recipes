@@ -1,6 +1,6 @@
 package com.amro.recipes.mapper;
 
-import com.amro.recipes.dao.model.Ingredient;
+import com.amro.recipes.dao.entity.Ingredient;
 import com.amro.recipes.dto.IngredientDto;
 import org.mapstruct.Mapper;
 

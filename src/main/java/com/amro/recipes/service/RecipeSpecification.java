@@ -1,10 +1,8 @@
 package com.amro.recipes.service;
 
-import com.amro.recipes.dao.model.RecipeIngredient;
+import com.amro.recipes.dao.entity.RecipeIngredient;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class RecipeSpecification {

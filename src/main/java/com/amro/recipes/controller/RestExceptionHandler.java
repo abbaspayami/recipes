@@ -1,6 +1,6 @@
 package com.amro.recipes.controller;
 
-import com.amro.recipes.dto.ExceptionDto;
+import com.amro.recipes.dto.ExceptionResponseDto;
 import com.amro.recipes.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,8 +23,8 @@ public class RestExceptionHandler {
      */
     @ExceptionHandler({FoodTypeAlreadyExistException.class, IngredientAlreadyExistException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ExceptionDto handleAlreadyExist(Exception ex) {
-        return new ExceptionDto(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    public ExceptionResponseDto handleAlreadyExist(Exception ex) {
+        return new ExceptionResponseDto(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     /**
@@ -35,8 +35,8 @@ public class RestExceptionHandler {
      */
     @ExceptionHandler({FoodTypeNotFoundException.class, IngredientNotFoundException.class, RecipeNotFoundException.class})
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ExceptionDto handleNotFound(Exception ex) {
-        return new ExceptionDto(ex.getMessage(), HttpStatus.NOT_FOUND);
+    public ExceptionResponseDto handleNotFound(Exception ex) {
+        return new ExceptionResponseDto(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
 }

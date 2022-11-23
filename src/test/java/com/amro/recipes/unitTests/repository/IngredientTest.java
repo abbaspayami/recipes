@@ -1,8 +1,7 @@
 package com.amro.recipes.unitTests.repository;
 
 import com.amro.recipes.common.TestUtils;
-import com.amro.recipes.dao.model.Ingredient;
-import com.amro.recipes.dao.model.Recipe;
+import com.amro.recipes.dao.entity.Ingredient;
 import com.amro.recipes.dao.repository.IngredientsRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

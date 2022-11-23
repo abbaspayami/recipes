@@ -1,8 +1,8 @@
 package com.amro.recipes.unitTests.service;
 
 import com.amro.recipes.common.TestUtils;
-import com.amro.recipes.dao.model.FoodType;
-import com.amro.recipes.dao.model.Recipe;
+import com.amro.recipes.dao.entity.FoodType;
+import com.amro.recipes.dao.entity.Recipe;
 import com.amro.recipes.dao.repository.FoodTypeRepository;
 import com.amro.recipes.dao.repository.IngredientsRepository;
 import com.amro.recipes.dao.repository.RecipeIngredientRepository;

@@ -1,5 +1,6 @@
-package com.amro.recipes.dao.model;
+package com.amro.recipes.dao.entity;
 
+import com.amro.recipes.dao.model.IngredientUnit;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

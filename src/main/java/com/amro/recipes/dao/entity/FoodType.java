@@ -1,4 +1,4 @@
-package com.amro.recipes.dao.model;
+package com.amro.recipes.dao.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

@@ -1,21 +1,15 @@
 package com.amro.recipes.unitTests.service;
 
 import com.amro.recipes.common.TestUtils;
-import com.amro.recipes.dao.model.FoodType;
-import com.amro.recipes.dao.model.Recipe;
+import com.amro.recipes.dao.entity.FoodType;
 import com.amro.recipes.dao.repository.FoodTypeRepository;
-import com.amro.recipes.dto.RecipeResponseDto;
 import com.amro.recipes.exceptions.FoodTypeAlreadyExistException;
 import com.amro.recipes.service.FoodTypeService;
-import com.amro.recipes.service.RecipeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;

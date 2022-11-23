@@ -1,6 +1,6 @@
 package com.amro.recipes.dao.repository;
 
-import com.amro.recipes.dao.model.Ingredient;
+import com.amro.recipes.dao.entity.Ingredient;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

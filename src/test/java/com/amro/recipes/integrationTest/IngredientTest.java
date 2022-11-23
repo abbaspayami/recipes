@@ -1,10 +1,9 @@
 package com.amro.recipes.integrationTest;
 
 import com.amro.recipes.common.TestUtils;
-import com.amro.recipes.dao.model.Ingredient;
+import com.amro.recipes.dao.entity.Ingredient;
 import com.amro.recipes.dto.IngredientDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -24,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestPropertySource("classpath:application-test.properties")
-public class IngredientTest {
+class IngredientTest {
 
     @Autowired
     private MockMvc mockMvc;

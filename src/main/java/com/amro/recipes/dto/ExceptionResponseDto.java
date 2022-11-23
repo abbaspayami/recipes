@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import java.time.LocalDateTime;
 
 @Data
-public class ExceptionDto {
+public class ExceptionResponseDto {
 
     private String error;
     private int status;
@@ -19,7 +19,7 @@ public class ExceptionDto {
      * @param message user custom message
      * @param status  relevant http status
      */
-    public ExceptionDto(String message, HttpStatus status) {
+    public ExceptionResponseDto(String message, HttpStatus status) {
         this.message = message;
         this.error = status.getReasonPhrase();
         this.status = status.value();

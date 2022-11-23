@@ -1,6 +1,6 @@
 package com.amro.recipes.service;
 
-import com.amro.recipes.dao.model.FoodType;
+import com.amro.recipes.dao.entity.FoodType;
 import com.amro.recipes.dao.repository.FoodTypeRepository;
 import com.amro.recipes.dto.FoodTypeDto;
 import com.amro.recipes.exceptions.FoodTypeAlreadyExistException;

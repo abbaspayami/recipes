@@ -1,6 +1,6 @@
 package com.amro.recipes.service;
 
-import com.amro.recipes.dao.model.Ingredient;
+import com.amro.recipes.dao.entity.Ingredient;
 import com.amro.recipes.dao.repository.IngredientsRepository;
 import com.amro.recipes.dao.repository.RecipeIngredientRepository;
 import com.amro.recipes.dto.IngredientDto;

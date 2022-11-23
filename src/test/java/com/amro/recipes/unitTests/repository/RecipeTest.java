@@ -2,7 +2,7 @@ package com.amro.recipes.unitTests.repository;
 
 
 import com.amro.recipes.common.TestUtils;
-import com.amro.recipes.dao.model.Recipe;
+import com.amro.recipes.dao.entity.Recipe;
 import com.amro.recipes.dao.repository.RecipeRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
