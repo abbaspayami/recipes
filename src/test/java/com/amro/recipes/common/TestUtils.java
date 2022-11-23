@@ -1,8 +1,8 @@
 package com.amro.recipes.common;
 
-import com.amro.recipes.dao.model.FoodType;
-import com.amro.recipes.dao.model.Ingredient;
-import com.amro.recipes.dao.model.Recipe;
+import com.amro.recipes.dao.entity.FoodType;
+import com.amro.recipes.dao.entity.Ingredient;
+import com.amro.recipes.dao.entity.Recipe;
 import com.amro.recipes.dto.FoodTypeDto;
 import com.amro.recipes.dto.IngredientDto;
 import com.amro.recipes.dto.RecipeDto;
@@ -34,7 +34,7 @@ public class TestUtils {
 //        recipe.setServe(2);
         FoodType foodType =new FoodType();
         foodType.setType("vegetarian");
-        recipe.setRfFoodType(foodType);
+        recipe.setFoodTypeId(foodType);
         return recipe;
     }
 
