@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="05" author="Abbas">
+        <createTable tableName="recipe"
+                     remarks="Recipe Data">
+            <column name="id" type="integer" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="title" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="serve" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="instructions" type="varchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fk_food_type_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="06" author="Abbas">
+        <addForeignKeyConstraint baseTableName="recipe" baseColumnNames="fk_food_type_id"
+                                 constraintName="fk_foodType_id"
+                                 referencedTableName="food_type" referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="07" author="Abbas">
+        <comment>Inserting Recipe records</comment>
+        <insert tableName="recipe">
+            <column name="id" valueNumeric="1"/>
+            <column name="title" value="spageti"/>
+            <column name="serve" valueNumeric="2"/>
+            <column name="instructions" value="First of all mix them all of them"/>
+            <column name="fk_food_type_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="recipe">
+            <column name="id" valueNumeric="2"/>
+            <column name="title" value="spaghetti"/>
+            <column name="serve" valueNumeric="3"/>
+            <column name="instructions" value="First of mix them all of them and put on the oven"/>
+            <column name="fk_food_type_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="recipe">
+            <column name="id" valueNumeric="3"/>
+            <column name="title" value="oatmeal"/>
+            <column name="serve" valueNumeric="4"/>
+            <column name="instructions" value="First of mix them all of them and put on the oven"/>
+            <column name="fk_food_type_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="recipe">
+            <column name="id" valueNumeric="4"/>
+            <column name="title" value="meatball"/>
+            <column name="serve" valueNumeric="5"/>
+            <column name="instructions" value="First of mix them all of them and put on the oven"/>
+            <column name="fk_food_type_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="recipe">
+            <column name="id" valueNumeric="5"/>
+            <column name="title" value="crept"/>
+            <column name="serve" valueNumeric="2"/>
+            <column name="instructions" value="First of mix them all of them"/>
+            <column name="fk_food_type_id" valueNumeric="1"/>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>

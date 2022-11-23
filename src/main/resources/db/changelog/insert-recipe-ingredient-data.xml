@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="08" author="Abbas">
+        <createTable tableName="recipe_ingredient"
+                     remarks="recipeIngredient Data">
+            <column name="id" type="integer" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="fk_ingredient_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fk_recipe_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="09" author="Abbas">
+        <addForeignKeyConstraint baseTableName="recipe_ingredient" baseColumnNames="fk_ingredient_id"
+                                 constraintName="ingredient_id"
+                                 referencedTableName="ingredient" referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="recipe_ingredient" baseColumnNames="fk_recipe_id"
+                                 constraintName="recipe_id"
+                                 referencedTableName="recipe" referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="10" author="Abbas">
+        <comment>Inserting Company records</comment>
+        <insert tableName="recipe_ingredient">
+            <column name="id" valueNumeric="1"/>
+            <column name="fk_ingredient_id" valueNumeric="1"/>
+            <column name="fk_recipe_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="id" valueNumeric="2"/>
+            <column name="fk_ingredient_id" valueNumeric="2"/>
+            <column name="fk_recipe_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="id" valueNumeric="3"/>
+            <column name="fk_ingredient_id" valueNumeric="3"/>
+            <column name="fk_recipe_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="id" valueNumeric="4"/>
+            <column name="fk_ingredient_id" valueNumeric="4"/>
+            <column name="fk_recipe_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="id" valueNumeric="5"/>
+            <column name="fk_ingredient_id" valueNumeric="5"/>
+            <column name="fk_recipe_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="id" valueNumeric="6"/>
+            <column name="fk_ingredient_id" valueNumeric="3"/>
+            <column name="fk_recipe_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="id" valueNumeric="7"/>
+            <column name="fk_ingredient_id" valueNumeric="4"/>
+            <column name="fk_recipe_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="id" valueNumeric="8"/>
+            <column name="fk_ingredient_id" valueNumeric="5"/>
+            <column name="fk_recipe_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="id" valueNumeric="9"/>
+            <column name="fk_ingredient_id" valueNumeric="1"/>
+            <column name="fk_recipe_id" valueNumeric="3"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="id" valueNumeric="10"/>
+            <column name="fk_ingredient_id" valueNumeric="2"/>
+            <column name="fk_recipe_id" valueNumeric="3"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="id" valueNumeric="11"/>
+            <column name="fk_ingredient_id" valueNumeric="5"/>
+            <column name="fk_recipe_id" valueNumeric="3"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="id" valueNumeric="12"/>
+            <column name="fk_ingredient_id" valueNumeric="2"/>
+            <column name="fk_recipe_id" valueNumeric="4"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="id" valueNumeric="13"/>
+            <column name="fk_ingredient_id" valueNumeric="4"/>
+            <column name="fk_recipe_id" valueNumeric="4"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="id" valueNumeric="14"/>
+            <column name="fk_ingredient_id" valueNumeric="5"/>
+            <column name="fk_recipe_id" valueNumeric="4"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
