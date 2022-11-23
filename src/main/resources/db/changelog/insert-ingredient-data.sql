@@ -1,15 +1,14 @@
 --changeset nvoxland:3
 create table ingredient (
         id bigserial primary key,
-        ingredient varchar(50) not null
+        ingredient varchar(50) not null,
+        unit varchar(10) not null
+
 );
 
 create unique index ingredient_ingredient ON ingredient (ingredient);
 
 --changeset nvoxland:4
-ALTER TABLE ingredient ADD unit VARCHAR(50);
-
---changeset nvoxland:9
 insert into ingredient(ingredient, unit) values ('potatoes', 'kg');
 insert into ingredient(ingredient, unit) values ('salmon', 'kg');
 insert into ingredient(ingredient, unit) values ('tomato', 'kg');
