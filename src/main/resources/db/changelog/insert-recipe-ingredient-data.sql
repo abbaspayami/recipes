@@ -8,7 +8,11 @@ create table recipe_ingredient (
 );
 
 --changeset nvoxland:8
-insert into recipe_ingredient(fk_ingredient_id, fk_recipe_id) values (1,2);
-insert into recipe_ingredient(fk_ingredient_id, fk_recipe_id) values (1,3);
-insert into recipe_ingredient(fk_ingredient_id, fk_recipe_id) values (2,1);
-insert into recipe_ingredient(fk_ingredient_id, fk_recipe_id) values (2,3);
+ALTER TABLE recipe_ingredient ADD amount int;
+ALTER TABLE recipe_ingredient ADD serving_number int;
+
+--changeset nvoxland:10
+insert into recipe_ingredient(fk_ingredient_id, fk_recipe_id, amount, serving_number) values (1,2,500, 1);
+insert into recipe_ingredient(fk_ingredient_id, fk_recipe_id, amount, serving_number) values (1,3, 700, 2);
+insert into recipe_ingredient(fk_ingredient_id, fk_recipe_id, amount, serving_number) values (2,1, 800, 3);
+insert into recipe_ingredient(fk_ingredient_id, fk_recipe_id, amount, serving_number) values (2,3, 900, 4);

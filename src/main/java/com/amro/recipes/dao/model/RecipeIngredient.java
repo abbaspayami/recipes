@@ -28,11 +28,11 @@ public class RecipeIngredient implements Serializable {
     @JoinColumn(name = "fk_recipe_id", referencedColumnName = "id")
     private Recipe rfRecipes;
 
-//    @Column(name = "amount", nullable = false)
-//    private float amount;
+    @Column(name = "amount", nullable = false)
+    private int amount;
 
-//    @Column(name = "serving_number", nullable = false)
-//    private Integer servingNumber;
+    @Column(name = "serving_number", nullable = false)
+    private int servingNumber;
 
     // TODO: 09/11/2022 create composite index
 }

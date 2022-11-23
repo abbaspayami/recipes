@@ -21,8 +21,8 @@ public class Ingredient {
     @Column(name = "ingredient", length = 50, nullable = false, unique = true)
     private String ingredient;
 
-//    @Enumerated(EnumType.STRING)
-//    @Column(name = "unit", length = 50)
-//    private IngredientUnit unit;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "unit", length = 50)
+    private IngredientUnit unit;
 
 }

@@ -7,8 +7,11 @@ create table ingredient (
 create unique index ingredient_ingredient ON ingredient (ingredient);
 
 --changeset nvoxland:4
-insert into ingredient(ingredient) values ('potatoes');
-insert into ingredient(ingredient) values ('salmon');
-insert into ingredient(ingredient) values ('tomato');
-insert into ingredient(ingredient) values ('oil');
-insert into ingredient(ingredient) values ('olive');
+ALTER TABLE ingredient ADD unit VARCHAR(50);
+
+--changeset nvoxland:9
+insert into ingredient(ingredient, unit) values ('potatoes', 'kg');
+insert into ingredient(ingredient, unit) values ('salmon', 'kg');
+insert into ingredient(ingredient, unit) values ('tomato', 'kg');
+insert into ingredient(ingredient, unit) values ('oil', 'gram');
+insert into ingredient(ingredient, unit) values ('olive', 'gram');
